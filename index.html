@@ -1,590 +1,797 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apu Kamayuk · Presentación</title>
-<meta name="description" content="Apu Kamayuk: coach de resistencia con IA para correr, trail y andinismo. Lee tu reloj, calcula con ciencia y nunca inventa cifras.">
-<meta property="og:title" content="Apu Kamayuk · El guardián de tus datos. El maestro de tu desnivel.">
-<meta property="og:description" content="Coach de resistencia con IA para asfalto, trail y andinismo, hecho en Quito.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='14' fill='%230a1020'/%3E%3Cpath d='M10 44 26 18l8 14 6-9 10 21z' fill='%232dd4bf'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#070c18; --bg2:#0d1526; --card:#111b30; --card2:#16233f; --line:#22324f;
-  --text:#f1f5f9; --muted:#9aa8c2; --brand:#2dd4bf; --sky:#38bdf8; --sun:#fbbf24;
-  --danger:#f87171; --safe:#4ade80; --on-brand:#04201c;
-  --glow:rgb(45 212 191 / .18); --ridge1:var(--card); --ridge2:var(--card2);
-  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
-}
-:root[data-theme="light"]{
-  --bg:#fff7ea; --bg2:#e4f3ff; --card:#ffffff; --card2:#ffeed6; --line:#f0d9b8;
-  --text:#10223d; --muted:#43546e; --brand:#0f766e; --vivid:#14b8a6; --sky:#0369a1; --sun:#c2410c;
-  --danger:#b91c1c; --safe:#15803d; --on-brand:#ffffff; --glow:rgb(251 146 60 / .35);
-  --ridge1:#9fd0ff; --ridge2:#5b9bf0;
-}
-:root[data-theme="light"] .slide:nth-of-type(odd){background:
-  radial-gradient(900px 520px at 88% -5%,rgb(251 191 36 / .42),transparent 62%),
-  radial-gradient(800px 520px at -5% 105%,rgb(56 189 248 / .30),transparent 62%),var(--bg)}
-:root[data-theme="light"] .slide:nth-of-type(even){background:
-  radial-gradient(900px 520px at 6% -5%,rgb(45 212 191 / .30),transparent 62%),
-  radial-gradient(800px 520px at 104% 105%,rgb(251 146 60 / .28),transparent 62%),var(--bg2)}
-:root[data-theme="light"] .card{border-color:var(--line);border-top:4px solid var(--vivid);box-shadow:0 10px 30px rgb(15 118 110 / .10)}
-:root[data-theme="light"] .card:nth-child(3n+2){border-top-color:#38bdf8}
-:root[data-theme="light"] .card:nth-child(3n){border-top-color:#fb923c}
-:root[data-theme="light"] .card.hot{box-shadow:0 0 0 1px var(--vivid),0 18px 46px rgb(20 184 166 / .30)}
-:root[data-theme="light"] .rule .id,:root[data-theme="light"] .tabs button[aria-selected="true"]{background:linear-gradient(135deg,#0d9488,#0284c7);border-color:transparent}
-:root[data-theme="light"] .grad{background-image:linear-gradient(95deg,#0d9488,#0284c7 55%,#ea580c)}
-:root[data-theme="light"] .progress{background:linear-gradient(90deg,#14b8a6,#fb923c)}
-*{box-sizing:border-box;margin:0}
-html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.5;-webkit-font-smoothing:antialiased}
-.slide{min-height:100vh;min-height:100dvh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(56px,9vh,96px) clamp(20px,6vw,96px) clamp(48px,8vh,80px);position:relative;overflow:hidden}
-.slide:nth-of-type(even){background:var(--bg2)}
-.wrap{max-width:1120px;width:100%;margin:0 auto;position:relative;z-index:1}
-.eyebrow{font:600 .78rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:18px}
-h1+.lead{margin-top:22px}
-h1{font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.02;font-weight:800;letter-spacing:-.03em}
-h2{font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;margin-bottom:14px;max-width:22ch}
-h2.wide{max-width:30ch}
-h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
-p,li{color:var(--muted);font-size:1.02rem}
-.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:60ch;margin-top:10px}
-.grad{background:linear-gradient(95deg,var(--brand),var(--sky) 55%,var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
-.grid{display:grid;gap:16px;margin-top:34px}
-.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
-.card .big{font:800 2.2rem/1 var(--mono);color:var(--brand);margin-bottom:8px}
-.card.hot{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),0 18px 50px var(--glow)}
-.tag{display:inline-block;font:600 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:99px;
-  border:1px solid var(--line);color:var(--muted);margin-bottom:12px}
-.tag.brand{color:var(--brand);border-color:var(--brand)}
-.tag.warn{color:var(--sun);border-color:var(--sun)}
-.tbd{font-family:var(--mono);font-size:.9em;color:var(--sun);border:1px dashed var(--sun);border-radius:6px;padding:1px 7px;white-space:nowrap}
-.note{font-size:.82rem;color:var(--muted);margin-top:18px;font-family:var(--mono)}
-ul.clean{list-style:none;padding:0;display:grid;gap:8px;margin-top:10px}
-ul.clean li{padding-left:22px;position:relative}
-ul.clean li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--brand);transform:rotate(45deg)}
-.mark{width:56px;height:56px;color:var(--brand);margin-bottom:26px}
-.ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:46%;z-index:0;opacity:.9;pointer-events:none}
-.sunrise{position:absolute;right:12%;top:14%;width:min(34vw,380px);aspect-ratio:1;border-radius:50%;z-index:0;
-  background:radial-gradient(circle,var(--glow),transparent 68%)}
-
-/* flujo */
-.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:34px;align-items:stretch}
-.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative}
-.step b{display:block;font:600 .72rem/1 var(--mono);color:var(--brand);letter-spacing:.1em;margin-bottom:8px}
-.step span{font-size:.92rem;color:var(--muted)}
-.step.ai{border-color:var(--sun)}.step.ai b{color:var(--sun)}
-.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font:600 .8rem var(--mono);color:var(--muted)}
-.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-
-/* demo chat */
-.demo{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:30px}
-.chat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;display:grid;gap:12px;align-content:start}
-.chat .hd{display:flex;justify-content:space-between;font:600 .78rem var(--mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px}
-.bub{padding:12px 14px;border-radius:14px;font-size:.95rem;max-width:92%}
-.bub.me{background:var(--card2);color:var(--text);justify-self:end;border-bottom-right-radius:4px}
-.bub.apu{background:color-mix(in srgb,var(--brand) 12%,var(--card));color:var(--text);border:1px solid color-mix(in srgb,var(--brand) 40%,var(--line));border-bottom-left-radius:4px}
-.bub b{color:var(--brand)}
-.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
-.m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
-.m small{display:block;font:600 .68rem var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
-.m strong,.m em{display:block}
-.m strong{font:800 1.7rem var(--mono);color:var(--text)}
-.m.bad{border-color:var(--danger)}.m.bad strong{color:var(--danger)}
-.m em{font-style:normal;font-size:.78rem;color:var(--muted)}
-.banner{grid-column:1/-1;background:color-mix(in srgb,var(--danger) 14%,var(--card));border:1px solid var(--danger);border-radius:14px;padding:12px 14px;color:var(--text);font-size:.9rem}
-.banner b{color:var(--danger)}
-
-/* reglas */
-.rule{display:flex;gap:14px;align-items:flex-start}
-.rule .id{font:800 1rem var(--mono);color:var(--on-brand);background:var(--brand);border-radius:10px;padding:6px 9px;flex:none}
-.rule p{font-size:.93rem}.rule h3{margin-bottom:2px;color:var(--text)}
-
-/* tabs perfiles */
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
-.tabs button{font:600 .9rem var(--font);color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:10px 18px;cursor:pointer}
-.tabs button[aria-selected="true"]{color:var(--on-brand);background:var(--brand);border-color:var(--brand)}
-.tabs button:focus-visible,.nav button:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
-.panel{display:none}.panel.on{display:grid}
-
-/* precios */
-.price{font:800 2rem var(--mono);color:var(--text);margin:6px 0 2px}
-.price small{font:500 .9rem var(--font);color:var(--muted)}
-.card ul{margin-top:10px;display:grid;gap:7px;list-style:none;padding:0}
-.card li{font-size:.92rem;padding-left:18px;position:relative}
-.card li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:800}
-
-/* roadmap */
-.road{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px;position:relative}
-.road .card{position:relative}
-.road .when{font:600 .75rem var(--mono);color:var(--brand);letter-spacing:.1em;margin-bottom:8px}
-.done{color:var(--safe)!important}
-
-/* nav */
-.progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--brand),var(--sun));width:0;z-index:30}
-.nav{position:fixed;right:18px;bottom:16px;display:flex;gap:8px;align-items:center;z-index:30;font:600 .78rem var(--mono);color:var(--muted)}
-.nav button{background:var(--card);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;cursor:pointer;font-size:1rem}
-.nav .count{min-width:56px;text-align:center}
-.brandbar{position:fixed;left:18px;top:14px;z-index:30;display:flex;gap:8px;align-items:center;font:700 .85rem var(--font);color:var(--text)}
-.brandbar svg{width:22px;height:22px;color:var(--brand)}
-
-
-/* nombre */
-.name{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
-.name .card h3{font:800 clamp(1.8rem,4vw,2.8rem)/1 var(--font);letter-spacing:-.02em;margin-bottom:4px}
-.name .card .tag{margin-bottom:14px}
-.name .card em{font-style:normal;color:var(--text)}
-.sum{margin-top:22px;font:700 clamp(1.1rem,2.4vw,1.5rem)/1.3 var(--font);color:var(--text)}
-/* conexión */
-.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;counter-reset:n}
-.how .card{counter-increment:n;position:relative;padding-top:54px}
-.how .card::before{content:counter(n);position:absolute;top:16px;left:22px;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
-  font:800 .95rem var(--mono);color:var(--on-brand);background:var(--brand)}
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-/* pantallas */
-.devs{display:grid;grid-template-columns:5fr 3.6fr 1.8fr;gap:22px;align-items:end;margin-top:26px}
-.dev figcaption{font:600 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px;text-align:center}
-.frame{border:7px solid #0b0f1a;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgb(0 0 0 / .35);background:#0b0f1a}
-.dev.phone .frame{border-radius:28px;border-width:6px}
-.fit{position:relative;width:100%;overflow:hidden}
-.fit.web{aspect-ratio:960/600}.fit.tab{aspect-ratio:820/600}.fit.pho{aspect-ratio:360/720}
-.swap{margin-top:18px;display:inline-flex;gap:8px;align-items:center;font:600 .85rem var(--font);color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:10px 18px;cursor:pointer}
-.mods{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}
-.mods div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.82rem;color:var(--muted)}
-.mods b{display:block;color:var(--text);font-size:.88rem}
-/* interfaz simulada (tokens propios, independientes del tema de la página) */
-.ui{--u-bg:#070c18;--u-card:#111b30;--u-line:#22324f;--u-text:#f1f5f9;--u-muted:#9aa8c2;--u-brand:#2dd4bf;--u-sky:#38bdf8;--u-warn:#fbbf24;--u-danger:#f87171;--u-safe:#4ade80;
-  --u-s1:#060a14;--u-s2:#101c3a;--u-m1:#1b2a52;--u-m2:#2a3a70;--u-snow:#aab4d8;--u-orb:#f1f5f9;--u-glow:rgb(241 245 249 / .25);
-  position:absolute;left:0;top:0;transform-origin:0 0;background:var(--u-bg);color:var(--u-text);font:13px/1.35 var(--font);overflow:hidden}
-.ui[data-mode="light"]{--u-bg:#fff7ea;--u-card:#ffffff;--u-line:#f0d9b8;--u-text:#10223d;--u-muted:#51627d;--u-brand:#0d9488;--u-sky:#0284c7;--u-warn:#c2410c;--u-danger:#dc2626;--u-safe:#16a34a;
-  --u-s1:#7cc4ff;--u-s2:#ffe3bd;--u-m1:#8db8f0;--u-m2:#5b8fe0;--u-snow:#ffffff;--u-orb:#ffb020;--u-glow:rgb(255 176 32 / .6)}
-.ui *{box-sizing:border-box}
-.ui .uh{display:flex;align-items:center;gap:10px;padding:12px 16px}
-.ui .uh .lg{width:30px;height:30px;border-radius:9px;background:var(--u-brand);display:grid;place-items:center}
-.ui .uh .lg svg{width:20px;height:20px}
-.ui .uh b{font-size:15px;letter-spacing:.02em}.ui .uh small{display:block;color:var(--u-muted);font-size:10px}
-.ui .uh .sp{flex:1}
-.ui .pill{border:1px solid var(--u-line);background:var(--u-card);border-radius:99px;padding:5px 11px;font-size:11px;color:var(--u-text);display:inline-flex;gap:5px;align-items:center}
-.ui .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--u-brand),var(--u-warn));display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
-.ui .strip{display:flex;gap:12px;align-items:center;padding:0 16px 10px;font-size:11px;color:var(--u-muted)}
-.ui .strip .st{color:var(--u-brand);border:1px solid var(--u-brand);border-radius:99px;padding:3px 10px;font-weight:700;letter-spacing:.04em}
-.ui .strip b{font-family:var(--mono);color:var(--u-text)}
-.ui .ok{color:var(--u-safe)}
-.ui .card{background:var(--u-card)!important;border:1px solid var(--u-line)!important;border-radius:12px;padding:12px;box-shadow:none!important}
-.ui .scene{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(var(--u-s1),var(--u-s2));border:1px solid var(--u-line)}
-.ui .scene .orb{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--u-orb);box-shadow:0 0 40px 12px var(--u-glow)}
-.ui .scene .rg{position:absolute;left:0;bottom:0;width:100%;height:68%}
-.ui .ms{position:absolute;min-width:78px;background:var(--u-card);border:1px solid var(--u-line);border-top:3px solid var(--c,var(--u-brand));border-radius:9px;padding:6px 9px}
-.ui .ms i{display:block;font:600 8.5px var(--mono);font-style:normal;letter-spacing:.1em;color:var(--u-muted)}
-.ui .ms b{display:block;font:800 17px/1.1 var(--mono);color:var(--c,var(--u-brand))}
-.ui .ms s{display:block;text-decoration:none;font-size:9px;color:var(--u-muted)}
-.ui .bub{border-radius:12px;padding:9px 11px;font-size:11.5px;max-width:92%;margin-bottom:8px}
-.ui .bub.a{background:var(--u-card);border:1px solid var(--u-line)}
-.ui .bub.u{background:color-mix(in srgb,var(--u-brand) 20%,var(--u-card));margin-left:auto;border:1px solid var(--u-line)}
-.ui .inp{margin-top:auto;border:1px solid var(--u-line);background:var(--u-card);border-radius:99px;padding:8px 12px;font-size:11px;color:var(--u-muted);display:flex;justify-content:space-between}
-.ui .inp i{width:18px;height:18px;border-radius:50%;background:var(--u-brand);display:block}
-.ui .ttl{font:700 10px var(--mono);letter-spacing:.12em;color:var(--u-brand);margin-bottom:8px}
-.ui .big{font:800 22px var(--mono)}
-.ui .bar{display:flex;gap:6px;margin:8px 0}.ui .bar span{padding:4px 10px;border-radius:99px;font-size:10.5px;border:1px solid var(--u-line);color:var(--u-muted)}
-.ui .bar span.on{background:var(--u-brand);color:#fff;border-color:var(--u-brand)}
-.ui .tabbar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-around;padding:10px 6px 16px;background:var(--u-card);border-top:1px solid var(--u-line);font-size:10.5px;color:var(--u-muted)}
-.ui .tabbar span{display:grid;justify-items:center;gap:3px}.ui .tabbar span.on{color:var(--u-brand);font-weight:700}
-.ui .tabbar i{width:20px;height:20px;border-radius:7px;border:2px solid currentColor;display:block}
-.ui .bento{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px}
-.ui .bento .ms{position:static;min-width:0}
-@media (max-width:900px){.devs{grid-template-columns:1fr 1fr}.devs .web-d{grid-column:1/-1}.name,.how,.faq{grid-template-columns:1fr}.mods{grid-template-columns:1fr 1fr}}
-@media (max-width:620px){.devs{grid-template-columns:1fr}.dev.phone{max-width:240px;margin:0 auto}}
-
-@media (max-width:900px){
-  .g3,.g4,.g2,.demo,.road{grid-template-columns:1fr 1fr}
-  .flow{grid-template-columns:1fr 1fr}
-}
-@media (max-width:620px){
-  .g3,.g4,.g2,.demo,.road,.flow{grid-template-columns:1fr}
-  html{scroll-snap-type:none}
-  .slide{min-height:auto}
-  .brandbar span{display:none}
-  .panel.on{grid-template-columns:1fr}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{
-  @page{size:A4 landscape;margin:0}
-  html{scroll-snap-type:none}
-  .slide{min-height:100vh;page-break-after:always;break-after:page}
-  .nav,.progress,.brandbar{display:none}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apu Coach · Tu coach de montaña con IA</title>
+  <meta name="description"
+    content="Apu Coach lee tu reloj a través de Intervals.icu, calcula tu carga con ciencia y te dice qué entrenar hoy. Asfalto, trail y andinismo. Hecho en Quito.">
+  <meta property="og:title" content="Apu Coach · El guardián de tus datos. El maestro de tu desnivel.">
+  <meta property="og:description" content="Coach de resistencia con IA para asfalto, trail y andinismo, hecho en Quito.">
+  <meta property="og:image" content="media/web-claro.webp">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="media/isotipo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Aplica el tema guardado antes de pintar para evitar parpadeo
+    try { var t = localStorage.getItem('apu-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
+
 <body>
-<div class="progress" id="progress"></div>
-<div class="brandbar"><svg viewBox="0 0 60 60" aria-hidden="true"><g fill="currentColor" fill-rule="nonzero">
-    <path d="m48 0h-36c-6.62421881.00771476-11.99228524 5.37578119-12 12v26c.00716485 6.624447 5.37555305 11.9928352 12 12h28.144l8.4 9.362c.372423.4049182.8968598.6361488 1.447.638.3179136-.0008611.6311122-.0769334.914-.222.7899684-.3910646 1.2237816-1.2595081 1.062-2.126l-1.285-8.008c5.4000807-1.2988586 9.2345761-6.0905376 9.318-11.644v-26c-.0077148-6.62421881-5.3757812-11.99228524-12-12zm10 38c-.0795843 4.637935-3.2941403 8.6314281-7.808 9.7-1.0065405.2494672-1.6533253 1.2294309-1.487 2.253l1.31 8.055-8.383-9.348c-.3799859-.4210265-.9208565-.6609288-1.488-.66h-28.144c-5.52033443-.0060624-9.99393763-4.4796656-10-10v-26c.00606237-5.52033443 4.47966557-9.99393763 10-10h36c5.5203344.00606237 9.9939376 4.47966557 10 10z"/>
-    <path d="m13 5c0-.55228475-.4477153-1-1-1-4.41622192.00495988-7.99504012 3.58377808-8 8 .00000001.5522847.44771526 1 1 1s.99999999-.4477153 1-1c.00385738-3.3121094 2.6878906-5.99614262 6-6 .5522847 0 1-.44771525 1-1z"/>
-    <circle cx="16" cy="5.001" r="1"/>
-    <path d="m41.593 24.956c-.3554014-.6135526-1.0129712-.9889249-1.722-.983-.7082458-.0059153-1.3653778.3680623-1.722.98l-4.489 7.627-8.9-16.528c-.3488072-.6478795-1.0251914-1.0519077-1.761-1.0519077s-1.4121928.4040282-1.761 1.0519077l-13.118 24.365c-.24170932.4833857-.05561916 1.0713535.42019587 1.3276448.47581504.2562913 1.06916776.0881598 1.33980413-.3796448l7.735-14.365h10.77l7.735 14.365c.1630256.3260291.4905395.5375244.8547695.5519759.36423.0144514.7074708-.1704306.8958148-.4825185.1883441-.3120879.1919518-.7019373.0094157-1.0174574l-3.111-5.778 5.1-8.672 9.14 15.54c.2800084.4760695.8929305.6350084 1.369.355s.6350084-.8929305.355-1.369zm-22.901.044 4.308-8 4.308 8z"/>
-    <path d="m40 22c3.3137085 0 6-2.6862915 6-6s-2.6862915-6-6-6-6 2.6862915-6 6c.0033074 3.3123376 2.6876624 5.9966926 6 6zm0-10c2.209139 0 4 1.790861 4 4s-1.790861 4-4 4-4-1.790861-4-4 1.790861-4 4-4z"/>
-    <path d="m29 17h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-2c-.5522847 0-1 .4477153-1 1s.4477153 1 1 1z"/>
-    <path d="m51 15h-2c-.5522847 0-1 .4477153-1 1s.4477153 1 1 1h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1z"/>
-    <path d="m32.929 21.657-1.414 1.414c-.2599566.2510745-.3642126.6228779-.2726972.9725073.0915155.3496295.3645604.6226744.7141899.7141899.3496294.0915154.7214328-.0127406.9725073-.2726972l1.414-1.414c.3789722-.3923789.3735524-1.0160848-.0121814-1.4018186s-1.0094397-.3911536-1.4018186-.0121814z"/>
-    <path d="m46.364 10.636c.2651948-.0000566.5195073-.1054506.707-.293l1.414-1.414c.2599566-.25107447.3642126-.62287789.2726972-.97250732-.0915155-.34962944-.3645604-.6226744-.7141899-.71418984-.3496294-.09151544-.7214328.01274058-.9725073.27269716l-1.414 1.414c-.2859079.28599425-.3714219.71603662-.216678 1.0896546.1547439.3736179.5192821.6172591.923678.6173454z"/>
-    <path d="m45.657 21.657c-.3903819.3904999-.3903819 1.0235001 0 1.414l1.414 1.414c.3923789.3789722 1.0160848.3735524 1.4018186-.0121814s.3911536-1.0094397.0121814-1.4018186l-1.414-1.414c-.3904999-.3903819-1.0235001-.3903819-1.414 0z"/>
-    <path d="m32.929 10.343c.3923789.3789722 1.0160848.3735524 1.4018186-.0121814.3857338-.38573382.3911536-1.00943971.0121814-1.4018186l-1.414-1.414c-.2510745-.25995658-.6228779-.3642126-.9725073-.27269716-.3496295.09151544-.6226744.3645604-.7141899.71418984-.0915154.34962943.0127406.72143285.2726972.97250732z"/>
-    <path d="m40 8c.5522847 0 1-.44771525 1-1v-2c0-.55228475-.4477153-1-1-1s-1 .44771525-1 1v2c0 .55228475.4477153 1 1 1z"/>
-  </g></svg><span>Apu Kamayuk</span></div>
 
-<!-- 1 · Portada -->
-<section class="slide" id="s1">
-  <div class="sunrise"></div>
-  <svg class="ridge" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 400V250l140-90 120 70 170-170 150 150 110-80 190 190 120-70 200 130v120z" fill="var(--ridge1)" opacity=".7"/>
-    <path d="M0 400V320l200-100 150 90 200-150 170 130 150-90 330 190v10z" fill="var(--ridge2)"/>
+  <!-- Iconografía vectorial: isotipo de Apu Coach + íconos de trazo (24×24) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="apu-iso" viewBox="0 0 60 60">
+      <path d="m48 0h-36c-6.62421881.00771476-11.99228524 5.37578119-12 12v26c.00716485 6.624447 5.37555305 11.9928352 12 12h28.144l8.4 9.362c.372423.4049182.8968598.6361488 1.447.638.3179136-.0008611.6311122-.0769334.914-.222.7899684-.3910646 1.2237816-1.2595081 1.062-2.126l-1.285-8.008c5.4000807-1.2988586 9.2345761-6.0905376 9.318-11.644v-26c-.0077148-6.62421881-5.3757812-11.99228524-12-12zm10 38c-.0795843 4.637935-3.2941403 8.6314281-7.808 9.7-1.0065405.2494672-1.6533253 1.2294309-1.487 2.253l1.31 8.055-8.383-9.348c-.3799859-.4210265-.9208565-.6609288-1.488-.66h-28.144c-5.52033443-.0060624-9.99393763-4.4796656-10-10v-26c.00606237-5.52033443 4.47966557-9.99393763 10-10h36c5.5203344.00606237 9.9939376 4.47966557 10 10z"/>
+      <path d="m13 5c0-.55228475-.4477153-1-1-1-4.41622192.00495988-7.99504012 3.58377808-8 8 .00000001.5522847.44771526 1 1 1s.99999999-.4477153 1-1c.00385738-3.3121094 2.6878906-5.99614262 6-6 .5522847 0 1-.44771525 1-1z"/>
+      <circle cx="16" cy="5.001" r="1"/>
+      <path d="m41.593 24.956c-.3554014-.6135526-1.0129712-.9889249-1.722-.983-.7082458-.0059153-1.3653778.3680623-1.722.98l-4.489 7.627-8.9-16.528c-.3488072-.6478795-1.0251914-1.0519077-1.761-1.0519077s-1.4121928.4040282-1.761 1.0519077l-13.118 24.365c-.24170932.4833857-.05561916 1.0713535.42019587 1.3276448.47581504.2562913 1.06916776.0881598 1.33980413-.3796448l7.735-14.365h10.77l7.735 14.365c.1630256.3260291.4905395.5375244.8547695.5519759.36423.0144514.7074708-.1704306.8958148-.4825185.1883441-.3120879.1919518-.7019373.0094157-1.0174574l-3.111-5.778 5.1-8.672 9.14 15.54c.2800084.4760695.8929305.6350084 1.369.355s.6350084-.8929305.355-1.369zm-22.901.044 4.308-8 4.308 8z"/>
+      <path d="m40 22c3.3137085 0 6-2.6862915 6-6s-2.6862915-6-6-6-6 2.6862915-6 6c.0033074 3.3123376 2.6876624 5.9966926 6 6zm0-10c2.209139 0 4 1.790861 4 4s-1.790861 4-4 4-4-1.790861-4-4 1.790861-4 4-4z"/>
+      <path d="m29 17h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-2c-.5522847 0-1 .4477153-1 1s.4477153 1 1 1z"/>
+      <path d="m51 15h-2c-.5522847 0-1 .4477153-1 1s.4477153 1 1 1h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1z"/>
+      <path d="m32.929 21.657-1.414 1.414c-.2599566.2510745-.3642126.6228779-.2726972.9725073.0915155.3496295.3645604.6226744.7141899.7141899.3496294.0915154.7214328-.0127406.9725073-.2726972l1.414-1.414c.3789722-.3923789.3735524-1.0160848-.0121814-1.4018186s-1.0094397-.3911536-1.4018186-.0121814z"/>
+      <path d="m46.364 10.636c.2651948-.0000566.5195073-.1054506.707-.293l1.414-1.414c.2599566-.25107447.3642126-.62287789.2726972-.97250732-.0915155-.34962944-.3645604-.6226744-.7141899-.71418984-.3496294-.09151544-.7214328.01274058-.9725073.27269716l-1.414 1.414c-.2859079.28599425-.3714219.71603662-.216678 1.0896546.1547439.3736179.5192821.6172591.923678.6173454z"/>
+      <path d="m45.657 21.657c-.3903819.3904999-.3903819 1.0235001 0 1.414l1.414 1.414c.3923789.3789722 1.0160848.3735524 1.4018186-.0121814s.3911536-1.0094397.0121814-1.4018186l-1.414-1.414c-.3904999-.3903819-1.0235001-.3903819-1.414 0z"/>
+      <path d="m32.929 10.343c.3923789.3789722 1.0160848.3735524 1.4018186-.0121814.3857338-.38573382.3911536-1.00943971.0121814-1.4018186l-1.414-1.414c-.2510745-.25995658-.6228779-.3642126-.9725073-.27269716-.3496295.09151544-.6226744.3645604-.7141899.71418984-.0915154.34962943.0127406.72143285.2726972.97250732z"/>
+      <path d="m40 8c.5522847 0 1-.44771525 1-1v-2c0-.55228475-.4477153-1-1-1s-1 .44771525-1 1v2c0 .55228475.4477153 1 1 1z"/>
+    </symbol>
+    <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <symbol id="i-watch" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 6l.8-3.5h4.4L15 6M9 18l.8 3.5h4.4L15 18M12 9.5V12l1.8 1.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-sync" viewBox="0 0 24 24"><path d="M4 8h15l-3.5-3.5M20 16H5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2.5 12h4l2.5-6.5 4.5 13L16 12h5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-road" viewBox="0 0 24 24"><path d="M9 3 4.5 21M15 3l4.5 18M12 4.5v2.5M12 10.5v3M12 17v2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-trail" viewBox="0 0 24 24"><path d="m2.5 19.5 6.5-11 4 6.5 2.5-3.5 6 8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 19.5c1.5-2 3.5-2.5 5-2.5s3 .5 4.5-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="1.5 2.5"/></symbol>
+      <symbol id="i-summit" viewBox="0 0 24 24"><path d="m2 20.5 8.5-13 3.5 5.5 2-3 6 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10.5 7.5V2.5l4.5 1.6-4.5 1.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.5 14H11l-1 7.5L19.5 10H13z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+      <symbol id="i-bug" viewBox="0 0 24 24"><rect x="8" y="7" width="8" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v9M8 11H4.5M19.5 11H16M8 15H3.5M20.5 15H16M8 19H5M19 19h-3M9.5 7.5 8 4.5M14.5 7.5 16 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21.5h4M12 2.5a6.5 6.5 0 0 0-3.8 11.8c.5.4.8 1 .8 1.6V16h6v-.1c0-.6.3-1.2.8-1.6A6.5 6.5 0 0 0 12 2.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-8.5-5-8.5-11A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 2.9c0 6-8.5 11-8.5 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-ext" viewBox="0 0 24 24"><path d="M8 6h10v10M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-drag" viewBox="0 0 24 24"><path d="m9 6-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </g>
   </svg>
-  <div class="wrap">
-    <svg class="mark" viewBox="0 0 60 60" aria-hidden="true"><g fill="currentColor" fill-rule="nonzero">
-    <path d="m48 0h-36c-6.62421881.00771476-11.99228524 5.37578119-12 12v26c.00716485 6.624447 5.37555305 11.9928352 12 12h28.144l8.4 9.362c.372423.4049182.8968598.6361488 1.447.638.3179136-.0008611.6311122-.0769334.914-.222.7899684-.3910646 1.2237816-1.2595081 1.062-2.126l-1.285-8.008c5.4000807-1.2988586 9.2345761-6.0905376 9.318-11.644v-26c-.0077148-6.62421881-5.3757812-11.99228524-12-12zm10 38c-.0795843 4.637935-3.2941403 8.6314281-7.808 9.7-1.0065405.2494672-1.6533253 1.2294309-1.487 2.253l1.31 8.055-8.383-9.348c-.3799859-.4210265-.9208565-.6609288-1.488-.66h-28.144c-5.52033443-.0060624-9.99393763-4.4796656-10-10v-26c.00606237-5.52033443 4.47966557-9.99393763 10-10h36c5.5203344.00606237 9.9939376 4.47966557 10 10z"/>
-    <path d="m13 5c0-.55228475-.4477153-1-1-1-4.41622192.00495988-7.99504012 3.58377808-8 8 .00000001.5522847.44771526 1 1 1s.99999999-.4477153 1-1c.00385738-3.3121094 2.6878906-5.99614262 6-6 .5522847 0 1-.44771525 1-1z"/>
-    <circle cx="16" cy="5.001" r="1"/>
-    <path d="m41.593 24.956c-.3554014-.6135526-1.0129712-.9889249-1.722-.983-.7082458-.0059153-1.3653778.3680623-1.722.98l-4.489 7.627-8.9-16.528c-.3488072-.6478795-1.0251914-1.0519077-1.761-1.0519077s-1.4121928.4040282-1.761 1.0519077l-13.118 24.365c-.24170932.4833857-.05561916 1.0713535.42019587 1.3276448.47581504.2562913 1.06916776.0881598 1.33980413-.3796448l7.735-14.365h10.77l7.735 14.365c.1630256.3260291.4905395.5375244.8547695.5519759.36423.0144514.7074708-.1704306.8958148-.4825185.1883441-.3120879.1919518-.7019373.0094157-1.0174574l-3.111-5.778 5.1-8.672 9.14 15.54c.2800084.4760695.8929305.6350084 1.369.355s.6350084-.8929305.355-1.369zm-22.901.044 4.308-8 4.308 8z"/>
-    <path d="m40 22c3.3137085 0 6-2.6862915 6-6s-2.6862915-6-6-6-6 2.6862915-6 6c.0033074 3.3123376 2.6876624 5.9966926 6 6zm0-10c2.209139 0 4 1.790861 4 4s-1.790861 4-4 4-4-1.790861-4-4 1.790861-4 4-4z"/>
-    <path d="m29 17h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1h-2c-.5522847 0-1 .4477153-1 1s.4477153 1 1 1z"/>
-    <path d="m51 15h-2c-.5522847 0-1 .4477153-1 1s.4477153 1 1 1h2c.5522847 0 1-.4477153 1-1s-.4477153-1-1-1z"/>
-    <path d="m32.929 21.657-1.414 1.414c-.2599566.2510745-.3642126.6228779-.2726972.9725073.0915155.3496295.3645604.6226744.7141899.7141899.3496294.0915154.7214328-.0127406.9725073-.2726972l1.414-1.414c.3789722-.3923789.3735524-1.0160848-.0121814-1.4018186s-1.0094397-.3911536-1.4018186-.0121814z"/>
-    <path d="m46.364 10.636c.2651948-.0000566.5195073-.1054506.707-.293l1.414-1.414c.2599566-.25107447.3642126-.62287789.2726972-.97250732-.0915155-.34962944-.3645604-.6226744-.7141899-.71418984-.3496294-.09151544-.7214328.01274058-.9725073.27269716l-1.414 1.414c-.2859079.28599425-.3714219.71603662-.216678 1.0896546.1547439.3736179.5192821.6172591.923678.6173454z"/>
-    <path d="m45.657 21.657c-.3903819.3904999-.3903819 1.0235001 0 1.414l1.414 1.414c.3923789.3789722 1.0160848.3735524 1.4018186-.0121814s.3911536-1.0094397.0121814-1.4018186l-1.414-1.414c-.3904999-.3903819-1.0235001-.3903819-1.414 0z"/>
-    <path d="m32.929 10.343c.3923789.3789722 1.0160848.3735524 1.4018186-.0121814.3857338-.38573382.3911536-1.00943971.0121814-1.4018186l-1.414-1.414c-.2510745-.25995658-.6228779-.3642126-.9725073-.27269716-.3496295.09151544-.6226744.3645604-.7141899.71418984-.0915154.34962943.0127406.72143285.2726972.97250732z"/>
-    <path d="m40 8c.5522847 0 1-.44771525 1-1v-2c0-.55228475-.4477153-1-1-1s-1 .44771525-1 1v2c0 .55228475.4477153 1 1 1z"/>
-  </g></svg>
-    <p class="eyebrow">Presentación · 2026</p>
-    <h1>Apu <span class="grad">Kamayuk</span></h1>
-    <p class="lead">El guardián de tus datos. El maestro de tu desnivel.<br>Un coach con IA para quienes corren, hacen trail y suben montañas, hecho en Quito.</p>
-  </div>
-</section>
 
-
-<!-- 2 · El nombre -->
-<section class="slide" id="s-nombre">
-  <div class="wrap">
-    <p class="eyebrow">El nombre</p>
-    <h2 class="wide">Una montaña que exige respeto y un perito que descifra tus datos</h2>
-    <div class="name">
-      <div class="card hot"><span class="tag brand">Quechua · cosmovisión andina</span><h3 class="grad">Apu</h3>
-        <p>El <em>espíritu tutelar</em> que habita las cumbres sagradas. Exige preparación, humildad y respeto a quien desafía el desnivel.</p></div>
-      <div class="card"><span class="tag brand">Quechua clásico</span><h3 class="grad">Kamayuk</h3>
-        <p>El <em>perito o especialista</em> que custodia una ciencia o técnica, como el <em>khipukamayuq</em>, el maestro que descifraba los datos de los quipus.</p></div>
-    </div>
-    <p class="sum">Apu Kamayuk: el sabio de la montaña y perito de tus datos de resistencia.</p>
-  </div>
-</section>
-
-<!-- 2 · Problema -->
-<section class="slide" id="s2">
-  <div class="wrap">
-    <p class="eyebrow">El problema</p>
-    <h2>Los atletas tienen datos de sobra y decisiones de menos</h2>
-    <p class="lead">Un reloj entrega números. Entrenar bien exige saber qué hacer hoy, sin lesionarse, y casi nadie puede pagar un entrenador personal.</p>
-    <div class="grid g3">
-      <div class="card"><div class="big">$$$</div><h3>El coach personal no escala</h3><p>Un entrenador cuesta caro y atiende a pocas personas. Un club entero rara vez tiene acceso.</p></div>
-      <div class="card"><div class="big">???</div><h3>Números sin decisión</h3><p>Carga, VFC, sueño, zonas… el atleta ve cifras pero no sabe si hoy toca apretar o descansar.</p></div>
-      <div class="card"><div class="big">!</div><h3>La IA genérica improvisa</h3><p>Un chatbot común puede inventar cifras o recomendar intensidad a alguien sobrecargado. En salud, eso es un riesgo real.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 3 · Solución -->
-<section class="slide" id="s3">
-  <div class="wrap">
-    <p class="eyebrow">La solución</p>
-    <h2>Un coach que lee tu reloj, calcula con ciencia y habla como persona</h2>
-    <p class="lead">Apu Kamayuk se conecta a la telemetría real del atleta y le dice qué hacer hoy, por qué, y cómo llegar a su meta.</p>
-    <div class="grid g3">
-      <div class="card hot"><span class="tag brand">Decide</span><h3>Decisión del día</h3><p>Carga, sueño, VFC, check-in y cercanía a la meta determinan la sesión de hoy. No es opinión del modelo: es cálculo.</p></div>
-      <div class="card"><span class="tag brand">Conversa</span><h3>Coach con memoria</h3><p>Responde en español, recuerda al atleta y adapta su lenguaje al nivel: formativo, intermedio o avanzado.</p></div>
-      <div class="card"><span class="tag brand">Planifica</span><h3>Semana y meta</h3><p>Microciclo semanal, tapering, estrategia de ritmo sobre el GPX de la carrera y clima de montaña.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 · Cómo funciona -->
-<section class="slide" id="s4">
-  <div class="wrap">
-    <p class="eyebrow">Cómo funciona</p>
-    <h2 class="wide">El código calcula y decide. La IA solo explica.</h2>
-    <p class="lead">Esta separación es el corazón del producto: la IA nunca inventa una cifra ni decide la intensidad.</p>
-    <div class="flow">
-      <div class="step"><b>1 · RELOJ</b><span>El atleta entrena con su reloj; los datos llegan a Intervals.icu.</span></div>
-      <div class="step"><b>2 · SINCRONIZA</b><span>Apu trae actividades, sueño, VFC y perfil, a mano o cada día.</span></div>
-      <div class="step"><b>3 · CALCULA</b><span>Python determinista: ritmo en pendiente, carga, forma, riesgo (ACWR).</span></div>
-      <div class="step"><b>4 · DECIDE</b><span>Reglas en código fijan la sesión de hoy y bloquean lo peligroso.</span></div>
-      <div class="step ai"><b>5 · EXPLICA</b><span>La IA lo cuenta con voz natural y se verifica contra las cifras reales.</span></div>
-    </div>
-    <div class="legend"><span><i class="dot" style="background:var(--brand)"></i>Lo hace el sistema</span><span><i class="dot" style="background:var(--sun)"></i>Lo hace el modelo de lenguaje</span></div>
-  </div>
-</section>
-
-
-<!-- Cómo se conecta -->
-<section class="slide" id="s-conexion">
-  <div class="wrap">
-    <p class="eyebrow">Cómo se conecta el atleta</p>
-    <h2 class="wide">Tres pasos y el reloj ya habla con Apu</h2>
-    <p class="lead">Apu no pide un reloj nuevo: se apoya en <b>Intervals.icu</b>, una plataforma abierta de análisis de entrenamiento que ya reúne los datos de los relojes más usados.</p>
-    <div class="how">
-      <div class="card"><h3>Crea tu cuenta en Intervals.icu</h3><p>Registro con correo. Es donde tu reloj deja sus actividades, sueño y variabilidad cardíaca.</p></div>
-      <div class="card"><h3>Enlaza tu reloj</h3><p>Suunto, Garmin y otros relojes compatibles envían sus datos a Intervals.icu de forma automática.</p></div>
-      <div class="card"><h3>Entra a Apu</h3><p>Inicia sesión con Intervals.icu (OAuth) o con tu Athlete ID y API Key. Apu verifica la cuenta y sincroniza.</p></div>
-    </div>
-    <div class="faq">
-      <div class="card"><h3>¿Por qué importa a un inversionista?</h3><p>Evita construir integraciones con cada marca de reloj y da datos reales y completos. A cambio, es un paso extra de alta: la <b>fricción de entrada</b> es la primera métrica del piloto.</p></div>
-      <div class="card"><h3>Cómo lo reducimos</h3><p>Guía de alta paso a paso para los clubes, sesión de configuración grupal con el entrenador y, más adelante, conexión directa con otras fuentes.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 · Producto -->
-<section class="slide" id="s5">
-  <div class="wrap">
-    <p class="eyebrow">El producto en acción</p>
-    <h2 class="wide">Cuando hay riesgo, Apu frena. Cuando no, empuja.</h2>
-    <div class="demo">
-      <div class="chat">
-        <div class="hd"><span>Apu · Tu deportólogo</span><span>datos demo</span></div>
-        <div class="bub me">Hoy me siento con ganas. ¿Hago series en cuesta?</div>
-        <div class="bub apu">Hoy <b>no toca intensidad</b>. Tu carga de la última semana subió bastante más que tu base (ACWR <b>1.62</b>) y dormiste poco. Si apretamos hoy, el riesgo de lesión sube.<br><br>Te propongo un trote suave de 40 min en zona 1 y movilidad. Mañana revisamos cómo amaneces.</div>
-        <div class="bub me">¿Y si me duele la rodilla al bajar?</div>
-        <div class="bub apu">Si es un dolor punzante, <b>para el impacto</b> y que te vea un médico o fisioterapeuta. Yo no puedo diagnosticarte.</div>
-      </div>
-      <div class="metrics">
-        <div class="banner"><b>Semáforo: Crítico.</b> Intensidad bloqueada por el sistema.</div>
-        <div class="m bad"><small>ACWR</small><strong>1.62</strong><em>zona de riesgo (&gt; 1.5)</em></div>
-        <div class="m"><small>Forma (TSB)</small><strong>−30</strong><em>fatiga alta</em></div>
-        <div class="m"><small>Sueño</small><strong>5 h 40</strong><em>bajo lo habitual</em></div>
-        <div class="m"><small>VFC</small><strong>38 ms</strong><em>por debajo de su base</em></div>
+  <!-- =========================================================
+     NAVEGACIÓN
+     ========================================================= -->
+  <header class="nav">
+    <div class="nav-in">
+      <a href="#apu" class="brand" data-goto="apu" aria-label="Apu Coach, inicio">
+        <svg class="mark" aria-hidden="true"><use href="#apu-iso"/></svg><span>Apu Coach</span>
+      </a>
+      <nav class="tabs" role="tablist" aria-label="Secciones">
+        <a href="#apu" role="tab" data-tab="apu">El coach</a>
+        <a href="#conectar" role="tab" data-tab="conectar">Conectar</a>
+        <a href="#proyecto" role="tab" data-tab="proyecto">Proyecto</a>
+        <a href="#comunidad" role="tab" data-tab="comunidad">Comunidad</a>
+      </nav>
+      <div class="nav-r">
+        <button class="icon-btn" id="theme" type="button" aria-label="Cambiar tema claro u oscuro">
+          <svg class="ic moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ic sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <a href="#conectar" class="pill-btn" data-goto="conectar">Empezar</a>
       </div>
     </div>
-    <p class="note">Pantalla ilustrativa con datos demo, no de una persona real. Un video del producto en uso estará disponible próximamente.</p>
-  </div>
-</section>
+  </header>
 
+  <main>
+    <!-- =========================================================
+       PESTAÑA 1 · EL COACH
+       ========================================================= -->
+    <div class="view" id="v-apu" role="tabpanel" aria-label="El coach">
 
-<!-- Pantallas -->
-<section class="slide" id="s-pantallas">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="ridge" viewBox="0 0 600 260" preserveAspectRatio="xMidYMax slice">
-    <path d="M0 260V160l90-70 80 55 110-120 100 105 70-50 150 140v100z" style="fill:var(--u-m1)"/>
-    <path d="M0 260V210l120-80 100 70 120-100 110 90 150-60v130z" style="fill:var(--u-m2)"/>
-    <path d="M280 25l-26 34 26-9 22 9z" style="fill:var(--u-snow)"/></symbol></defs></svg>
-  <div class="wrap">
-    <p class="eyebrow">Interfaz</p>
-    <h2 class="wide">Un cockpit de montaña que se adapta a cada pantalla</h2>
-    <p class="lead">Cada módulo es un hito sobre la cordillera. Tema claro «Amanecer andino» y oscuro «Noche en la cordillera»; en móvil, tarjetas y barra inferior.</p>
-    <div class="devs">
-      <figure class="dev web-d"><div class="frame"><div class="fit web"><div class="ui" data-mode="dark" data-w="960" style="width:960px;height:600px"><div class="uh"><span class="lg"><svg viewBox="0 0 60 60"><path d="M8 46 25 16l9 15 6-9 12 24z" fill="#fff"/></svg></span><div><b>APU KAMAYUK</b><small>Inteligencia fisiológica de montaña</small></div><span class="sp"></span><span class="pill">Actualizar</span><span class="pill">Ajustes</span><span class="av">A</span></div><div class="strip"><span class="st">DESCARGA ACTIVA</span><span>ACWR <b>0.82</b> <span class="ok">Bajo</span></span><span>TSB <b>+8.2</b> <span class="ok">Fresco</span></span><span>Intensidad <span class="ok">Luz verde</span></span></div>
-<div style="display:grid;grid-template-columns:215px 1fr 240px;gap:10px;padding:0 16px;height:470px">
-  <div class="card"><div class="ttl">PROGRESO</div><div class="bar"><span class="on">Volumen</span><span>Resumen</span></div>
-    <div style="color:var(--u-muted);font-size:11px;margin-top:10px">Distancia del mes</div><div class="big">96,4 <small style="font-size:12px;color:var(--u-muted)">km</small></div>
-    <svg viewBox="0 0 180 80" style="width:100%;margin-top:6px"><polyline points="0,70 25,66 50,52 75,48 100,36 125,32 150,20 180,14" fill="none" stroke="var(--u-brand)" stroke-width="2.5"/><polyline points="0,72 30,60 60,56 90,44 120,40 150,30 180,24" fill="none" stroke="var(--u-muted)" stroke-width="1.5" opacity=".6"/></svg>
-    <div style="color:var(--u-muted);font-size:11px;margin-top:10px">Carga de entrenamiento</div><div class="big">842 <small style="font-size:12px;color:var(--u-muted)">TSS</small></div></div>
-  <div class="scene"><div class="orb" style="left:46%;top:9%"></div><svg class="rg" preserveAspectRatio="xMidYMax slice"><use href="#ridge"/></svg>
-    <div class="ms" style="left:22%;top:46%;--c:var(--u-safe)"><i>FORMA</i><b>+8.2</b><s>TSB</s></div><div class="ms" style="left:42%;top:60%;--c:var(--u-sky)"><i>CARGA</i><b>0.82</b><s>ACWR</s></div><div class="ms" style="left:62%;top:48%;--c:var(--u-safe)"><i>RECUPERACIÓN</i><b>7h 20</b><s>Sueño</s></div>
-    <div class="ms" style="left:8%;top:72%;--c:var(--u-brand)"><i>META</i><b>44d</b><s>para la carrera</s></div><div class="ms" style="left:66%;top:74%;--c:var(--u-danger)"><i>CLIMA</i><b>4°C</b><s>Parcialmente</s></div></div>
-  <div class="card" style="display:flex;flex-direction:column"><div class="ttl">APU · TU DEPORTÓLOGO</div>
-    <div class="bub a">Hola, Ana. Soy <b>Apu</b>. Tu carga está baja: buen momento para construir base con calma.</div>
-    <div class="bub u">¿Qué entreno hoy?</div>
-    <div class="bub a">Rodaje suave de 40 min en <b>Z2</b>, terreno llano. Mañana subimos un poco el volumen.</div>
-    <div class="inp"><span>Pregúntale a Apu…</span><i></i></div></div>
-</div></div></div></div><figcaption>Web · oscuro</figcaption></figure>
-      <figure class="dev"><div class="frame"><div class="fit tab"><div class="ui" data-mode="light" data-w="820" style="width:820px;height:600px"><div class="uh"><span class="lg"><svg viewBox="0 0 60 60"><path d="M8 46 25 16l9 15 6-9 12 24z" fill="#fff"/></svg></span><div><b>APU KAMAYUK</b><small>Inteligencia fisiológica de montaña</small></div><span class="sp"></span><span class="pill">Actualizar</span><span class="pill">Ajustes</span><span class="av">A</span></div><div class="strip"><span class="st">DESCARGA ACTIVA</span><span>ACWR <b>0.82</b> <span class="ok">Bajo</span></span><span>TSB <b>+8.2</b> <span class="ok">Fresco</span></span><span>Intensidad <span class="ok">Luz verde</span></span></div>
-<div class="scene" style="margin:0 16px;height:300px"><div class="orb" style="left:44%;top:8%"></div><svg class="rg" preserveAspectRatio="xMidYMax slice"><use href="#ridge"/></svg>
-  <div class="ms" style="left:10%;top:50%;--c:var(--u-safe)"><i>FORMA</i><b>+8.2</b><s>TSB</s></div><div class="ms" style="left:30%;top:64%;--c:var(--u-sky)"><i>CARGA</i><b>0.82</b><s>ACWR</s></div><div class="ms" style="left:50%;top:48%;--c:var(--u-safe)"><i>RECUPERACIÓN</i><b>7h 20</b><s>Sueño</s></div><div class="ms" style="left:72%;top:64%;--c:var(--u-sky)"><i>MICROCICLO</i><b>Z2</b><s>Sesión de hoy</s></div><div class="ms" style="left:84%;top:40%;--c:var(--u-brand)"><i>META</i><b>44d</b><s>para la carrera</s></div></div>
-<div class="card" style="margin:12px 16px 0;display:flex;gap:14px;align-items:center"><div style="flex:1"><div class="ttl" style="margin-bottom:4px">APU · TU DEPORTÓLOGO</div><div style="font-size:12px">Hola, Ana. Tu carga está baja: buen momento para construir base con calma.</div></div>
-  <div class="inp" style="margin:0;width:250px"><span>Pregúntale a Apu…</span><i></i></div></div></div></div></div><figcaption>Tablet · claro</figcaption></figure>
-      <figure class="dev phone"><div class="frame"><div class="fit pho"><div class="ui" data-mode="dark" data-w="360" style="width:360px;height:720px">
-<div class="uh" style="padding:14px"><span class="lg"><svg viewBox="0 0 60 60"><path d="M8 46 25 16l9 15 6-9 12 24z" fill="#fff"/></svg></span><div><b>APU KAMAYUK</b></div><span class="sp"></span><span class="av">A</span></div>
-<div class="strip" style="padding:0 14px 10px"><span class="st">DESCARGA ACTIVA</span><span>ACWR <b>0.82</b></span></div>
-<div class="bento"><div class="ms" style="left:0%;top:0%;--c:var(--u-safe)"><i>FORMA</i><b>+8.2</b><s>TSB · fresco</s></div><div class="ms" style="left:0%;top:0%;--c:var(--u-sky)"><i>CARGA</i><b>0.82</b><s>ACWR · bajo</s></div><div class="ms" style="left:0%;top:0%;--c:var(--u-safe)"><i>SUEÑO</i><b>7h 20</b><s>anoche</s></div><div class="ms" style="left:0%;top:0%;--c:var(--u-brand)"><i>META</i><b>44d</b><s>para la carrera</s></div><div class="ms" style="left:0%;top:0%;--c:var(--u-sky)"><i>MICROCICLO</i><b>Z2</b><s>sesión de hoy</s></div><div class="ms" style="left:0%;top:0%;--c:var(--u-danger)"><i>CLIMA</i><b>4°C</b><s>parcialmente</s></div></div>
-<div class="card" style="margin:12px 14px 0"><div class="ttl">APU · TU DEPORTÓLOGO</div><div class="bub a" style="margin:0">Tu carga está baja: buen momento para construir base. ¿Cómo te sientes hoy?</div></div>
-<div class="tabbar"><span class="on"><i></i>Apu</span><span><i></i>Hoy</span><span><i></i>Módulos</span><span><i></i>Ajustes</span></div></div></div></div><figcaption>Móvil · oscuro</figcaption></figure>
-    </div>
-    <button class="swap" id="swap" type="button">◐ Intercambiar claro / oscuro</button>
-    <div class="mods"><div><b>Resumen del día</b>Semáforo y decisión de hoy</div><div><b>Semáforo de carga</b>ACWR y riesgo de lesión</div><div><b>Recuperación</b>Sueño, VFC y check-in</div><div><b>Forma y entrenos</b>CTL, ATL, TSB</div><div><b>Subir .FIT</b>Actividades manuales</div><div><b>Microciclo semanal</b>Plan y cumplimiento</div><div><b>Meta</b>Viabilidad, GPX, tapering</div><div><b>Progreso</b>Volumen e historial</div><div><b>Clima</b>16 días y alertas</div><div><b>Chat con Apu</b>Coach con memoria</div></div>
-    <p class="note">Maquetas con datos demo (atleta ficticia), no capturas de usuarios reales.</p>
-  </div>
-</section>
+      <!-- HERO -->
+      <section class="hero">
+        <p class="eyebrow rv">Apu Coach</p>
+        <h1 class="rv">Tu coach de montaña.<br><span class="grad">Con tus datos reales.</span></h1>
+        <p class="sub rv">Lee tu reloj. Calcula con ciencia. Te dice qué entrenar hoy.</p>
+        <div class="ctas rv">
+          <a href="#conectar" class="btn primary" data-goto="conectar">Conectar mi reloj</a>
+          <a href="#ver-chat" class="btn link">Ver cómo funciona<svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+        </div>
 
-<!-- 6 · Seguridad -->
-<section class="slide" id="s6">
-  <div class="wrap">
-    <p class="eyebrow">Diferenciador clave</p>
-    <h2 class="wide">La seguridad no depende del prompt: está en el código</h2>
-    <p class="lead">Seis reglas inmutables se verifican sobre cada respuesta. Si el modelo se equivoca, el sistema lo corrige antes de que llegue al atleta.</p>
-    <div class="grid g3">
-      <div class="rule"><span class="id">R1</span><div><h3>Solo cifras del sistema</h3><p>El modelo no calcula ni estima; un verificador revisa los números.</p></div></div>
-      <div class="rule"><span class="id">R2</span><div><h3>La sesión la fija el sistema</h3><p>El coach la explica y ajusta en forma, no en intensidad.</p></div></div>
-      <div class="rule"><span class="id">R3</span><div><h3>Sin intensidad si hay riesgo</h3><p>Con ACWR &gt; 1.5 no hay series, tempo ni tiradas largas.</p></div></div>
-      <div class="rule"><span class="id">R4</span><div><h3>Salud primero</h3><p>Sin diagnósticos ni fármacos. Ante dolor o fiebre, a un médico.</p></div></div>
-      <div class="rule"><span class="id">R5</span><div><h3>Tus zonas, no genéricas</h3><p>Solo las zonas de frecuencia cardíaca del perfil del atleta.</p></div></div>
-      <div class="rule"><span class="id">R6</span><div><h3>Calendario real</h3><p>Todo anclado a la fecha de hoy y al día de la meta.</p></div></div>
-    </div>
-  </div>
-</section>
+        <div class="laptop zoom-in" aria-label="Apu Coach en la web">
+          <div class="lid">
+            <video class="auto" muted loop playsinline preload="metadata" poster="media/cordillera-web-poster.jpg"
+              aria-label="Demostración: la cordillera de Ana y una pregunta al chat">
+              <source src="media/cordillera-web.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="base"></div>
+        </div>
+        <p class="caption">Ana (atleta de demostración) le pregunta qué entrenar mañana. Grabación real de la app.</p>
+      </section>
 
-<!-- 7 · Beneficio al atleta -->
-<section class="slide" id="s7">
-  <div class="wrap">
-    <p class="eyebrow">Beneficio para el atleta</p>
-    <h2 class="wide">Entrenar con criterio, sin pagar un entrenador personal</h2>
-    <div class="tabs" role="tablist" aria-label="Tipo de atleta">
-      <button role="tab" aria-selected="true" data-p="p1">Corredor de asfalto</button>
-      <button role="tab" aria-selected="false" data-p="p2">Trail runner</button>
-      <button role="tab" aria-selected="false" data-p="p3">Andinista</button>
-    </div>
-    <div class="grid g3 panel on" id="p1">
-      <div class="card"><h3>Menos lesiones</h3><p>Alerta cuando la carga sube demasiado rápido y frena la intensidad.</p></div>
-      <div class="card"><h3>Una decisión cada mañana</h3><p>Check-in de 30 segundos y la sesión de hoy, ajustada a cómo amaneció.</p></div>
-      <div class="card"><h3>Llegar bien a la meta</h3><p>Viabilidad de la carrera y tapering: bajar carga a tiempo, no tarde.</p></div>
-    </div>
-    <div class="grid g3 panel" id="p2">
-      <div class="card"><h3>Ritmo real en pendiente</h3><p>Ritmo ajustado por desnivel (GAP): el esfuerzo en cuesta se mide por lo que cuesta, no por el reloj.</p></div>
-      <div class="card"><h3>Estrategia con el GPX</h3><p>Sube el track de la carrera y recibe tiempos estimados y dónde apretar o contenerse.</p></div>
-      <div class="card"><h3>Retrospectiva de la carrera</h3><p>Con el .FIT de la prueba: deriva cardíaca y qué mejorar en el próximo bloque.</p></div>
-    </div>
-    <div class="grid g3 panel" id="p3">
-      <div class="card"><h3>Clima de montaña</h3><p>Pronóstico a 16 días y alertas de tormenta, UV, viento y lluvia para la ventana de cumbre.</p></div>
-      <div class="card"><h3>Pensado para la altura</h3><p>Desde Quito (~2.850 m): carga, recuperación y preparación de ascensos a los volcanes cercanos.</p></div>
-      <div class="card"><h3>Prudencia por diseño</h3><p>Ante señales de alarma, Apu sugiere parar y consultar a un profesional.</p></div>
-    </div>
-  </div>
-</section>
+      <!-- CHAT -->
+      <section class="sec" id="ver-chat">
+        <div class="wrap split">
+          <div class="copy">
+            <p class="eyebrow rv">El chat</p>
+            <h2 class="rv">Pregúntale.<br><span class="grad">Te responde con tus números.</span></h2>
+            <p class="lead rv">Nada de consejos genéricos. Apu cruza tu carga, sueño, VFC, zonas y clima antes de
+              contestar.</p>
+            <ul class="asks rv" aria-label="Ejemplos de preguntas">
+              <li>¿Qué entreno hoy?</li>
+              <li>¿Estoy lista para mi carrera?</li>
+              <li>¿Cómo me recupero?</li>
+              <li>¿Qué tiempo hará en la cumbre?</li>
+            </ul>
+          </div>
+          <div class="phone rv">
+            <video class="auto" muted loop playsinline preload="metadata" poster="media/chat-movil-poster.jpg"
+              aria-label="Demostración del chat en el móvil, tema oscuro">
+              <source src="media/chat-movil.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </section>
 
-<!-- 8 · Mercado -->
-<section class="slide" id="s8">
-  <div class="wrap">
-    <p class="eyebrow">Dónde puede hacer nicho</p>
-    <h2 class="wide">Tres lugares donde Apu podría hacerse imprescindible</h2>
-    <p class="lead">Son hipótesis, no certezas. Me interesa probarlas contigo y con tu gente.</p>
-    <div class="grid g3">
-      <div class="card"><span class="tag brand">Idea 1</span><h3>Clubes de running y grupos de andinismo de Quito</h3><p>Comunidades pequeñas, de boca a boca, con el mismo problema: mucho dato, poca guía. Un club convencido trae a sus miembros.</p></div>
-      <div class="card"><span class="tag brand">Idea 2</span><h3>Quien entrena en altura y montaña</h3><p>La carga, la recuperación y el clima cambian a 2.800 m y más. Las apps genéricas no están pensadas para eso.</p></div>
-      <div class="card"><span class="tag brand">Idea 3</span><h3>Eventos, guías y agencias de montaña</h3><p>Preparación de una carrera o un ascenso con plan, ritmo y ventana de clima. Un canal natural para llegar a más gente.</p></div>
+      <!-- HIGHLIGHTS -->
+      <section class="sec alt">
+        <div class="wrap">
+          <h2 class="rv">Lo esencial.</h2>
+        </div>
+        <div class="hl" id="hl">
+          <div class="hl-track" id="hl-track">
+            <figure class="hl-card port">
+              <div class="hl-media"><div class="hl-phone"><video muted playsinline preload="none" poster="media/hoy-movil-poster.jpg">
+                <source src="media/hoy-movil.mp4" type="video/mp4">
+              </video></div></div>
+              <figcaption class="hl-cap"><b>Tu día en un vistazo.</b> Semáforo, forma y qué hacer hoy en una sola pantalla.</figcaption>
+            </figure>
+            <figure class="hl-card danger">
+              <div class="hl-media"><video muted playsinline preload="none" poster="media/escudo-web-poster.jpg">
+                <source src="media/escudo-web.mp4" type="video/mp4">
+              </video></div>
+              <figcaption class="hl-cap"><b>Te frena antes de lesionarte.</b> Si la carga se dispara, el código bloquea la
+                intensidad.</figcaption>
+            </figure>
+            <figure class="hl-card">
+              <div class="hl-media"><video muted playsinline preload="none" poster="media/ruta-gpx-poster.jpg">
+                <source src="media/ruta-gpx.mp4" type="video/mp4">
+              </video></div>
+              <figcaption class="hl-cap"><b>Tu carrera, tramo a tramo.</b> Sube el GPX y recibe tiempos y tácticas por sector.
+              </figcaption>
+            </figure>
+            <figure class="hl-card">
+              <div class="hl-media"><video muted playsinline preload="none" poster="media/microciclo-web-poster.jpg">
+                <source src="media/microciclo-web.mp4" type="video/mp4">
+              </video></div>
+              <figcaption class="hl-cap"><b>Tu semana, planificada.</b> Microciclo por fase y cumplimiento contra lo que hiciste.
+              </figcaption>
+            </figure>
+            <figure class="hl-card">
+              <div class="hl-media"><img src="media/web-oscuro-clima.webp" alt="Panel de clima de montaña en tema oscuro" loading="lazy"></div>
+              <figcaption class="hl-cap"><b>Clima de cumbre.</b> UV, lluvia, viento y qué llevar para tu sesión.</figcaption>
+            </figure>
+          </div>
+          <div class="hl-ctrl">
+            <div class="dots" id="hl-dots" role="tablist" aria-label="Elegir video"></div>
+            <button type="button" class="round" id="hl-play" aria-label="Pausar">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path class="i-pause" d="M7 5h3v14H7zM14 5h3v14h-3z" />
+                <path class="i-play" d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORDILLERA -->
+      <section class="sec">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">La cordillera</p>
+            <h2>Cada cumbre es un dato.<br><span class="grad">Toca una y Apu te lo explica.</span></h2>
+          </div>
+          <div class="ridge">
+            <div class="ridge-pic">
+              <div class="shot-frame">
+                <img src="media/web-claro.webp" alt="Cockpit de Apu Coach con siete hitos sobre la cordillera"
+                  loading="lazy">
+                <i class="hot" style="left:50%;top:68%" data-k="0"></i>
+                <i class="hot" style="left:35.3%;top:79%" data-k="1"></i>
+                <i class="hot" style="left:64.7%;top:80%" data-k="2"></i>
+                <i class="hot" style="left:5.8%;top:80.5%" data-k="3"></i>
+                <i class="hot" style="left:79.4%;top:83%" data-k="4"></i>
+                <i class="hot" style="left:20.6%;top:84%" data-k="5"></i>
+                <i class="hot" style="left:94.2%;top:80.5%" data-k="6"></i>
+              </div>
+            </div>
+            <ol class="ridge-steps">
+              <li data-k="0"><b class="mono">0.89</b><h3>Carga</h3>
+                <p>Lo que vienes entrenando frente a lo que tu cuerpo aguanta (ACWR).</p>
+              </li>
+              <li data-k="1"><b class="mono">+5.0</b><h3>Forma</h3>
+                <p>Si llegas fresco o con fatiga acumulada (TSB).</p>
+              </li>
+              <li data-k="2"><b class="mono">7h 24</b><h3>Recuperación</h3>
+                <p>Sueño, VFC y tu check-in de cada mañana.</p>
+              </li>
+              <li data-k="3"><b class="mono">Hoy</b><h3>Microciclo</h3>
+                <p>Tu sesión de hoy dentro del plan de la semana.</p>
+              </li>
+              <li data-k="4"><b class="mono">38d</b><h3>Meta</h3>
+                <p>Días a tu carrera, ritmo por tramos y tapering.</p>
+              </li>
+              <li data-k="5"><b class="mono">4°C</b><h3>Clima</h3>
+                <p>Pronóstico de montaña a 16 días.</p>
+              </li>
+              <li data-k="6"><b class="mono">km</b><h3>Progreso</h3>
+                <p>Tus semanas y meses comparados.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- MÓDULOS -->
+      <section class="sec alt">
+        <div class="wrap split">
+          <div class="copy">
+            <p class="eyebrow rv">A tu medida</p>
+            <h2 class="rv">Tu cordillera,<br><span class="grad">a tu manera.</span></h2>
+            <p class="lead rv">Elige cuántos hitos quieres ver. Solo el chat, lo esencial o la cumbre completa.</p>
+            <ul class="tiers rv">
+              <li><b>Campamento base</b><span>Solo el chat con Apu</span></li>
+              <li><b>Ruta clásica</b><span>Lo esencial para entrenar</span></li>
+              <li><b>Cumbre</b><span>Los 7 hitos</span></li>
+            </ul>
+          </div>
+          <div class="rv">
+            <img class="themed only-light shot-pic" src="media/modulos-claro.webp" alt="Ajustes de módulos de Apu Coach, tema claro" loading="lazy">
+            <img class="themed only-dark shot-pic" src="media/modulos-oscuro.webp" alt="Ajustes de módulos de Apu Coach, tema oscuro" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- ESCUDO -->
+      <section class="sec dark-band">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Escudo anti-lesiones</p>
+            <h2>Cuando tu cuerpo dice no,<br><span class="grad-warm">Apu también.</span></h2>
+            <p class="lead">Desliza para ver el mismo día con y sin sobrecarga.</p>
+          </div>
+          <div class="compare rv" id="compare" style="--x:50%">
+            <img src="media/spike-web.webp" alt="Cockpit con sobrecarga: ACWR 1.54, lluvia y alerta roja"
+              loading="lazy">
+            <div class="cmp-top"><img src="media/web-claro.webp" alt="Cockpit en zona óptima: ACWR 0.89"
+                loading="lazy"></div>
+            <span class="cmp-tag l">Zona óptima · ACWR 0.89</span>
+            <span class="cmp-tag r">Sobrecarga · ACWR 1.54</span>
+            <div class="cmp-bar" aria-hidden="true"><i><svg class="ic" aria-hidden="true"><use href="#i-drag"/></svg></i></div>
+            <input type="range" min="0" max="100" value="50" id="cmp-range"
+              aria-label="Comparar día normal con día de sobrecarga">
+          </div>
+          <div class="quote rv">
+            <p>«Hoy no se puede. Con un ACWR de 1.54 y el sueño en 5.6 horas, la fatiga aguda te está pasando factura.
+              <b>Descarga activa:</b> 20–30 min de trote muy suave en Zona 1.»</p>
+            <span>Extracto de la respuesta real de Apu a «¿Puedo hacer series hoy?»</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- DISPOSITIVOS -->
+      <section class="sec">
+        <div class="wrap center">
+          <div class="head rv">
+            <p class="eyebrow">En cualquier pantalla</p>
+            <h2>Web, tablet y móvil.<br><span class="grad">De día o de noche.</span></h2>
+          </div>
+          <div class="seg-row rv">
+            <div class="seg" role="group" aria-label="Dispositivo">
+              <button type="button" data-dev="web" aria-pressed="true">Web</button>
+              <button type="button" data-dev="tablet" aria-pressed="false">Tablet</button>
+              <button type="button" data-dev="movil" aria-pressed="false">Móvil</button>
+            </div>
+            <div class="seg" role="group" aria-label="Tema de la maqueta">
+              <button type="button" data-mode="claro" aria-pressed="true">Amanecer</button>
+              <button type="button" data-mode="oscuro" aria-pressed="false">Noche</button>
+            </div>
+          </div>
+          <div class="devstage rv" id="devstage" data-dev="web">
+            <div class="dev-frame">
+              <img id="dev-img" src="media/web-claro.webp" alt="Apu Coach en web, tema claro">
+            </div>
+          </div>
+          <p class="caption" id="dev-cap">Web · Amanecer andino</p>
+        </div>
+      </section>
+
+      <!-- CÓMO FUNCIONA -->
+      <section class="sec alt">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Cómo funciona</p>
+            <h2>El código calcula.<br><span class="grad">Apu te lo explica.</span></h2>
+          </div>
+          <div class="flow rv">
+            <div class="fs"><span class="fi"><svg class="ic" aria-hidden="true"><use href="#i-watch"/></svg></span><b>Tu reloj</b><small>Garmin, Coros, Suunto, Polar…</small></div>
+            <div class="fs"><span class="fi"><svg class="ic" aria-hidden="true"><use href="#i-sync"/></svg></span><b>Intervals.icu</b><small>Sincroniza entrenos, sueño y
+                VFC</small></div>
+            <div class="fs"><span class="fi"><svg class="ic" aria-hidden="true"><use href="#i-pulse"/></svg></span><b>Motor fisiológico</b><small>ACWR, TSB, GAP y la
+                sesión del día</small></div>
+            <div class="fs ai"><span class="fi"><svg class="mark" aria-hidden="true"><use href="#apu-iso"/></svg></span><b>Apu</b><small>Lo
+                traduce a un consejo claro</small></div>
+          </div>
+          <div class="stats rv">
+            <div><b class="mono" data-count="900" data-suffix="+">900+</b><span>pruebas automáticas</span></div>
+            <div><b class="mono">6</b><span>reglas de seguridad en código</span></div>
+            <div><b class="mono">7</b><span>módulos en tu cordillera</span></div>
+            <div><b class="mono">0</b><span>cifras inventadas</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="sec cta-band">
+        <div class="wrap center">
+          <svg class="mark xl rv" aria-hidden="true"><use href="#apu-iso"/></svg>
+          <h2 class="rv">Conecta tu reloj en minutos.</h2>
+          <div class="ctas rv">
+            <a href="#conectar" class="btn primary" data-goto="conectar">Ver el tutorial</a>
+            <a href="#proyecto" class="btn link" data-goto="proyecto">Conocer el proyecto<svg class="ic chev" aria-hidden="true"><use href="#i-chev"/></svg></a>
+          </div>
+        </div>
+      </section>
     </div>
-    <p class="note">¿Cuál te hace más sentido? ¿Hay otro nicho que estoy dejando pasar?</p>
-  </div>
-</section>
 
-<!-- 9 · Modelo de negocio -->
-<section class="slide" id="s9">
-  <div class="wrap">
-    <p class="eyebrow">Cómo podría sostenerse</p>
-    <h2 class="wide">Gratis para empezar; de pago solo lo que cuesta mantener</h2>
-    <p class="lead">El coach con IA tiene un costo por uso. La idea es que lo básico sea gratis y lo avanzado se pague, por persona o por club.</p>
-    <div class="grid g3">
-      <div class="card"><span class="tag">Gratis</span><h3>Lo esencial del día</h3>
-        <ul><li>Semáforo de carga y recuperación</li><li>Check-in y decisión del día</li><li>Clima de montaña</li><li>Pocos mensajes al coach por día</li></ul></div>
-      <div class="card hot"><span class="tag brand">Pro · individual</span><h3>Todo el coach</h3>
-        <ul><li>Coach sin límite práctico</li><li>Plan semanal con seguimiento</li><li>Meta, ritmo sobre GPX y tapering</li><li>Historial y progreso completos</li></ul></div>
-      <div class="card"><span class="tag warn">Club</span><h3>Para un grupo completo</h3>
-        <ul><li>Todo Pro para los miembros</li><li>Panel del entrenador (aún por construir)</li><li>Alertas de sobrecarga del grupo</li><li>Una sola cuenta para todo el club</li></ul></div>
+    <!-- =========================================================
+       PESTAÑA 2 · CONECTAR CON INTERVALS.ICU
+       ========================================================= -->
+    <div class="view" id="v-conectar" role="tabpanel" aria-label="Conectar">
+
+      <section class="hero short">
+        <p class="eyebrow rv">Conectar</p>
+        <h1 class="rv">Tu reloj habla con Apu<br><span class="grad">en cuatro pasos.</span></h1>
+        <p class="sub rv">Apu lee tus datos a través de <b>Intervals.icu</b>, una plataforma gratuita que reúne los
+          relojes deportivos más usados.</p>
+        <div class="chain rv" aria-hidden="true">
+          <span><svg class="ic" aria-hidden="true"><use href="#i-watch"/></svg></span><i></i><span class="iv">intervals.icu</span><i></i><span><svg class="mark" aria-hidden="true"><use href="#apu-iso"/></svg></span>
+        </div>
+        <ul class="needs rv">
+          <li><b>Un reloj deportivo</b>Garmin, Coros, Suunto, Polar, Wahoo o Apple Watch</li>
+          <li><b>Cuenta en Intervals.icu</b>Gratis</li>
+          <li><b>Unos 5 minutos</b>Y tu correo a mano</li>
+        </ul>
+      </section>
+
+      <section class="sec alt">
+        <div class="wrap tut">
+          <nav class="tut-nav" aria-label="Pasos del tutorial">
+            <a href="#paso-1" data-step="1"><i>1</i>Crear cuenta</a>
+            <a href="#paso-2" data-step="2"><i>2</i>Conectar reloj</a>
+            <a href="#paso-3" data-step="3"><i>3</i>Copiar claves</a>
+            <a href="#paso-4" data-step="4"><i>4</i>Entrar a Apu</a>
+          </nav>
+
+          <div class="tut-body">
+            <!-- PASO 1 -->
+            <article class="step" id="paso-1">
+              <span class="num">Paso 1</span>
+              <h2>Crea tu cuenta gratis en Intervals.icu</h2>
+              <ol class="todo">
+                <li>Abre <a href="https://intervals.icu" target="_blank" rel="noopener">intervals.icu<svg class="ic ext" aria-hidden="true"><use href="#i-ext"/></svg></a>. Si la ves
+                  en inglés, toca la bandera de España.</li>
+                <li>Pulsa <b>Haga clic para registrarse</b> y crea tu cuenta con correo y contraseña.</li>
+                <li>Confirma el correo que te llega e inicia sesión.</li>
+              </ol>
+              <figure class="shot">
+                <img class="real" src="media/intervals/paso-1.webp" alt="Pantalla de inicio de sesión y registro de Intervals.icu" loading="lazy">
+                <figcaption>Inicio de sesión de Intervals.icu, con el enlace para registrarte</figcaption>
+              </figure>
+            </article>
+
+            <!-- PASO 2 -->
+            <article class="step" id="paso-2">
+              <span class="num">Paso 2</span>
+              <h2>Conecta tu reloj</h2>
+              <p class="crumb"><span>Ajustes</span><svg class="ic sep" aria-hidden="true"><use href="#i-chev"/></svg><span>Conexiones</span></p>
+              <ol class="todo">
+                <li>Abre <a href="https://intervals.icu/settings" target="_blank" rel="noopener">Ajustes<svg class="ic ext" aria-hidden="true"><use href="#i-ext"/></svg></a> y entra a la
+                  pestaña <b>Conexiones</b>.</li>
+                <li>Toca la tarjeta de la marca de tu reloj e inicia sesión en su cuenta para autorizar.</li>
+                <li>Marca <b>Descargar actividades</b> y <b>Descargar datos de bienestar</b> (sueño, VFC, FC en reposo).
+                  Sin bienestar, Apu no puede medir tu recuperación.</li>
+                <li>Trae tu historial con <b>Descargar datos antiguos</b> o <b>Importar todos los datos</b>. Apu necesita
+                  al menos 6 semanas para calcular bien tu carga.</li>
+              </ol>
+
+              <div class="brands" role="tablist" aria-label="Instrucciones por marca">
+                <button type="button" role="tab" data-brand="garmin" aria-selected="true">Garmin</button>
+                <button type="button" role="tab" data-brand="coros" aria-selected="false">Coros</button>
+                <button type="button" role="tab" data-brand="suunto" aria-selected="false">Suunto</button>
+                <button type="button" role="tab" data-brand="polar" aria-selected="false">Polar</button>
+                <button type="button" role="tab" data-brand="apple" aria-selected="false">Apple Watch</button>
+              </div>
+              <div class="brand-tip" id="brand-tip" aria-live="polite"></div>
+
+              <div class="note warn">
+                <b>Conecta el reloj directamente, no solo Strava.</b> La propia tarjeta de Strava en Intervals.icu avisa
+                de las «restricciones de la API de Strava»: las actividades que llegan solo desde Strava no se pueden
+                leer por API, y Apu no las vería.
+              </div>
+
+              <figure class="shot">
+                <img class="real" src="media/intervals/paso-2.webp" alt="Pestaña Conexiones de Intervals.icu con Suunto conectado y la descarga de actividades y bienestar activada" loading="lazy">
+                <figcaption>Ejemplo con Suunto: actividades y datos de bienestar activados</figcaption>
+              </figure>
+            </article>
+
+            <!-- PASO 3 -->
+            <article class="step" id="paso-3">
+              <span class="num">Paso 3</span>
+              <h2>Copia tu ID de atleta y tu clave API</h2>
+              <p class="crumb"><span>Ajustes</span><svg class="ic sep" aria-hidden="true"><use href="#i-chev"/></svg><span>Configuración de desarrollador</span></p>
+              <ol class="todo">
+                <li>En <a href="https://intervals.icu/settings" target="_blank" rel="noopener">Ajustes<svg class="ic ext" aria-hidden="true"><use href="#i-ext"/></svg></a> baja hasta
+                  <b>Configuración de desarrollador</b>, a la derecha.</li>
+                <li>Copia tu <b>ID del atleta</b>. Empieza por «i», por ejemplo <code>i123456</code>.</li>
+                <li>En <b>Clave API</b> pulsa <b>(view)</b> para verla y cópiala.</li>
+              </ol>
+              <div class="note">
+                <b>Trátala como una contraseña.</b> No la compartas por chat ni redes. Si algún día quieres cortar el
+                acceso, genera una clave nueva con el lápiz junto a «(view)» y la anterior deja de funcionar.
+              </div>
+              <figure class="shot">
+                <img class="real" src="media/intervals/paso-3.webp" alt="Configuración de desarrollador de Intervals.icu con el ID del atleta y la Clave API" loading="lazy">
+                <figcaption>ID del atleta y Clave API (el ID está difuminado en esta captura)</figcaption>
+              </figure>
+            </article>
+
+            <!-- PASO 4 -->
+            <article class="step" id="paso-4">
+              <span class="num">Paso 4</span>
+              <h2>Entra a Apu Coach</h2>
+              <ol class="todo">
+                <li>Abre Apu Coach y pega tu <b>ID de atleta</b> y tu <b>clave API</b>.</li>
+                <li>Pulsa <b>Entrar con Intervals.icu</b>.</li>
+                <li>Apu lee tu historial y en segundos te da tu primera decisión del día.</li>
+              </ol>
+              <a class="btn primary app-link" href="#" target="_blank" rel="noopener" hidden>Abrir Apu Coach<svg class="ic ext" aria-hidden="true"><use href="#i-ext"/></svg></a>
+              <figure class="shot">
+                <img class="real" src="media/intervals/paso-4.webp" alt="Pantalla de entrada de Apu Coach con los campos ID de atleta y Clave API" loading="lazy">
+                <figcaption>Pantalla de entrada de Apu Coach</figcaption>
+              </figure>
+              <div class="done-card">
+                <img src="media/movil-hoy.webp" alt="Primera pantalla Hoy en Apu Coach" loading="lazy">
+                <div>
+                  <h3>¡Listo!</h3>
+                  <p>Esto es lo primero que verás: tu estado, cómo vienes y qué hacer hoy.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec">
+        <div class="wrap narrow">
+          <div class="head rv">
+            <p class="eyebrow">¿Algo no funcionó?</p>
+            <h2>Preguntas frecuentes</h2>
+          </div>
+          <div class="faq rv">
+            <details>
+              <summary>Dice «El ID de atleta o la clave API no son correctos»</summary>
+              <p>Revisa que el ID empiece por «i» y que no copiaste espacios al inicio o al final. Si generaste una clave
+                nueva, la anterior ya no sirve: pega la más reciente.</p>
+            </details>
+            <details>
+              <summary>No veo mi sueño ni mi VFC</summary>
+              <p>En Intervals.icu, entra a Ajustes › Conexiones y revisa que en la tarjeta de tu reloj esté marcado
+                «Descargar datos de bienestar». Tu reloj también debe registrar sueño y VFC (no todos los modelos lo
+                hacen).</p>
+            </details>
+            <details>
+              <summary>Mis entrenamientos no aparecen</summary>
+              <p>Sincroniza el reloj con la app de su marca (Garmin Connect, Coros, Suunto…) y espera unos minutos a que
+                lleguen a Intervals.icu. Luego pulsa <b>Actualizar</b> en Apu. Si solo usas Strava, conecta además tu
+                reloj directamente.</p>
+            </details>
+            <details>
+              <summary>¿Cuánto cuesta Intervals.icu?</summary>
+              <p>La cuenta básica es gratuita y tiene todo lo que Apu necesita. Intervals.icu acepta aportes voluntarios
+                para sostener la plataforma.</p>
+            </details>
+            <details>
+              <summary>¿Qué hace Apu con mis datos?</summary>
+              <p>Solo los lee para calcular tu estado. Tus claves se guardan cifradas, cada atleta está aislado y las
+                rutas GPS se recortan 500 m al inicio y al final para proteger tu casa.</p>
+            </details>
+          </div>
+          <div class="ctas rv">
+            <a href="#comunidad" class="btn ghost" data-goto="comunidad">¿Te trabaste? Cuéntanos</a>
+          </div>
+        </div>
+      </section>
     </div>
-    <p class="note">Los precios aún no existen: es un tema abierto. ¿Pagarías por esto? ¿Cuánto te parecería justo?</p>
-  </div>
-</section>
 
-<!-- 10 · Estado del producto -->
-<section class="slide" id="s10">
-  <div class="wrap">
-    <p class="eyebrow">Dónde estamos</p>
-    <h2 class="wide">Lo que ya funciona hoy</h2>
-    <div class="grid g4">
-      <div class="card"><div class="big">900+</div><h3>Pruebas automáticas</h3><p>Con datos sintéticos, sin datos personales, en integración continua.</p></div>
-      <div class="card"><div class="big">9</div><h3>Módulos</h3><p>Resumen, carga, recuperación, forma, actividades, semana, meta, progreso y clima.</p></div>
-      <div class="card"><div class="big">6</div><h3>Reglas en código</h3><p>Seguridad verificada sobre cada respuesta del coach.</p></div>
-      <div class="card"><div class="big">3</div><h3>Formatos de pantalla</h3><p>Móvil, tablet y escritorio; tema claro y oscuro.</p></div>
+    <!-- =========================================================
+       PESTAÑA 3 · EL PROYECTO
+       ========================================================= -->
+    <div class="view" id="v-proyecto" role="tabpanel" aria-label="El proyecto">
+
+      <section class="hero short">
+        <svg class="mark xl rv" aria-hidden="true"><use href="#apu-iso"/></svg>
+        <p class="eyebrow rv">Hecho en Quito · 2.850 m</p>
+        <h1 class="rv">El guardián de tus datos.<br><span class="grad">El maestro de tu desnivel.</span></h1>
+      </section>
+
+      <!-- NOMBRE -->
+      <section class="sec alt">
+        <div class="wrap">
+          <div class="names">
+            <div class="name rv">
+              <span class="tag">Quechua</span>
+              <div class="word grad">Apu</div>
+              <p>El espíritu tutelar que habita las cumbres. En la cosmovisión andina, la montaña que protege y que
+                exige preparación, humildad y respeto a quien la sube.</p>
+            </div>
+            <div class="name rv">
+              <span class="tag">Entrenador</span>
+              <div class="word grad">Coach</div>
+              <p>El entrenador que lee tus datos, decide con criterio y te acompaña en cada ascenso. Juntos, <b>Apu
+                  Coach</b>: la montaña que te cuida y el coach que te prepara para subirla.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEMA -->
+      <section class="sec">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Por qué existe</p>
+            <h2>Datos de sobra.<br><span class="grad">Decisiones de menos.</span></h2>
+            <p class="lead">Tu reloj te da números. Entrenar bien exige saber qué hacer hoy sin lesionarte.</p>
+          </div>
+          <div class="ps rv">
+            <div class="card">
+              <h3>Lo que pasa hoy</h3>
+              <ul class="x">
+                <li>Un coach personal es caro y no escala a un club entero.</li>
+                <li>Ves CTL, VFC y zonas, pero no sabes si hoy toca apretar.</li>
+                <li>Un chatbot genérico inventa cifras o te manda series sobrecargado.</li>
+              </ul>
+            </div>
+            <div class="card accent">
+              <h3>Lo que hace Apu</h3>
+              <ul class="ok">
+                <li>Fórmulas reales deciden tu sesión con carga, sueño, VFC y días a la meta.</li>
+                <li>Conversa en español, recuerda tus lesiones y se adapta a tu nivel.</li>
+                <li>Planifica tu semana, tu tapering y tu estrategia sobre el GPX.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERFILES -->
+      <section class="sec alt">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Para quién</p>
+            <h2>Tres terrenos. <span class="grad">Un mismo criterio.</span></h2>
+          </div>
+          <div class="cards3 rv">
+            <div class="card">
+              <span class="emo"><svg class="ic" aria-hidden="true"><use href="#i-road"/></svg></span>
+              <h3>Asfalto</h3>
+              <p>10K, media y maratón. Constancia sin romperse y tapering exacto para llegar fresco.</p>
+            </div>
+            <div class="card">
+              <span class="emo"><svg class="ic" aria-hidden="true"><use href="#i-trail"/></svg></span>
+              <h3>Trail running</h3>
+              <p>Ritmo ajustado a pendiente (GAP), estrategia sobre tu GPX y análisis del .FIT de la carrera.</p>
+            </div>
+            <div class="card">
+              <span class="emo"><svg class="ic" aria-hidden="true"><use href="#i-summit"/></svg></span>
+              <h3>Andinismo</h3>
+              <p>Altura, aclimatación y clima de cumbre a 16 días. Ante señales de alarma, prioriza bajar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGLAS -->
+      <section class="sec">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Seguridad</p>
+            <h2>Las reglas no están en el prompt.<br><span class="grad">Están en el código.</span></h2>
+            <p class="lead">La IA explica; el código calcula y decide. Cada respuesta se verifica antes de llegarte.</p>
+          </div>
+          <ol class="rules rv">
+            <li><b>Solo cifras del sistema.</b> El modelo no calcula ni estima.</li>
+            <li><b>La sesión la fija el código.</b> Apu la explica, no cambia su intensidad.</li>
+            <li><b>Sin intensidad si hay riesgo.</b> Con ACWR sobre 1.5 se bloquean series y tempo.</li>
+            <li><b>Salud primero.</b> Sin diagnósticos ni fármacos; ante dolor o fiebre, al médico.</li>
+            <li><b>Tus zonas, no genéricas.</b> Solo tus zonas de frecuencia cardíaca.</li>
+            <li><b>Calendario real.</b> Todo anclado a hoy y a tu meta.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- PLANES -->
+      <section class="sec alt">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Planes</p>
+            <h2>Empieza gratis.</h2>
+            <p class="lead">Durante el piloto, todos los atletas tienen acceso completo.</p>
+          </div>
+          <div class="plans rv">
+            <div class="card">
+              <h3>Gratis</h3>
+              <ul class="ok">
+                <li>Semáforo de carga y recuperación</li>
+                <li>Check-in y decisión del día</li>
+                <li>Clima de montaña</li>
+                <li>Algunos mensajes al día con Apu</li>
+              </ul>
+            </div>
+            <div class="card accent">
+              <span class="tag">Pro</span>
+              <h3>Coach completo</h3>
+              <ul class="ok">
+                <li>Conversación con Apu sin límite práctico</li>
+                <li>Microciclo semanal con seguimiento</li>
+                <li>Meta con GPX, ritmo por tramos y tapering</li>
+                <li>Progreso e historial completos</li>
+              </ul>
+            </div>
+            <div class="card">
+              <span class="tag">Próximamente</span>
+              <h3>Clubes</h3>
+              <ul class="ok">
+                <li>Pro para cada miembro</li>
+                <li>Alertas de sobrecarga del grupo</li>
+                <li>Panel para el entrenador</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESTADO Y CONTACTO -->
+      <section class="sec">
+        <div class="wrap">
+          <div class="head rv">
+            <p class="eyebrow">Dónde estamos</p>
+            <h2>Construido, probado <span class="grad">y en piloto.</span></h2>
+          </div>
+          <div class="facts rv">
+            <div><b class="mono">900+</b><span>pruebas automáticas con datos sintéticos</span></div>
+            <div><b class="mono">7</b><span>módulos: carga, forma, recuperación, microciclo, meta, clima y
+                progreso</span></div>
+            <div><b class="mono">AES-256</b><span>claves cifradas y atletas aislados</span></div>
+            <div><b class="mono">500 m</b><span>de GPS recortado al inicio y fin de cada ruta</span></div>
+          </div>
+          <div class="ps rv">
+            <div class="card">
+              <h3>Tecnología</h3>
+              <p>Motor en Python (FastAPI) con analítica determinista, base de datos PostgreSQL en Supabase y Gemini como
+                modelo de lenguaje con respaldo automático en Groq.</p>
+            </div>
+            <div class="card accent">
+              <h3>Súmate al piloto</h3>
+              <p>Buscamos corredores, clubes de Quito, médicos deportivos e inversionistas.</p>
+              <p class="contact"><b>Luis Alfredo</b><br><a href="mailto:lpilco7@gmail.com">lpilco7@gmail.com</a> · <a
+                  href="https://wa.me/593979323343" target="_blank" rel="noopener">WhatsApp 0979 323 343</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="grid g2" style="margin-top:16px">
-      <div class="card"><h3>Arquitectura</h3><ul class="clean"><li>Frontend en Netlify, backend en Render, datos en PostgreSQL (Supabase)</li><li>Gemini como modelo, con respaldo automático en Groq</li><li>Sin estado en el servidor: listo para crecer por capas</li></ul></div>
-      <div class="card"><h3>Seguridad y privacidad</h3><ul class="clean"><li>Credenciales cifradas (AES-256) y aislamiento total entre atletas</li><li>GPS recortado a 500 m del inicio y fin</li><li>Límites de uso por atleta y protección contra inyección de prompts</li></ul></div>
+
+    <!-- =========================================================
+       PESTAÑA 4 · COMUNIDAD
+       ========================================================= -->
+    <div class="view" id="v-comunidad" role="tabpanel" aria-label="Comunidad">
+
+      <section class="hero short">
+        <p class="eyebrow rv">Comunidad</p>
+        <h1 class="rv">Construyamos a Apu<br><span class="grad">juntos.</span></h1>
+        <p class="sub rv">¿Encontraste un error? ¿Se te ocurre algo mejor? Cada comentario llega directo al equipo.</p>
+        <div class="counts rv">
+          <div><b class="mono" id="cnt-total">0</b><span>aportes</span></div>
+          <div><b class="mono" id="cnt-mejora">0</b><span>mejoras</span></div>
+          <div><b class="mono" id="cnt-bug">0</b><span>bugs</span></div>
+          <div><b class="mono" id="cnt-idea">0</b><span>ideas y experiencias</span></div>
+        </div>
+      </section>
+
+      <section class="sec alt">
+        <div class="wrap board">
+          <aside class="card form">
+            <h3>Deja tu aporte</h3>
+            <form id="fb-form" novalidate>
+              <fieldset class="types">
+                <legend class="l">Tipo</legend>
+                <label><input type="radio" name="tipo" value="Mejora" checked><span><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg>Mejora</span></label>
+                <label><input type="radio" name="tipo" value="Bug"><span><svg class="ic" aria-hidden="true"><use href="#i-bug"/></svg>Bug</span></label>
+                <label><input type="radio" name="tipo" value="Idea"><span><svg class="ic" aria-hidden="true"><use href="#i-bulb"/></svg>Idea</span></label>
+                <label><input type="radio" name="tipo" value="Felicitación"><span><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg>Experiencia</span></label>
+              </fieldset>
+
+              <label class="l" for="fb-area">¿Sobre qué parte?</label>
+              <select id="fb-area" name="area">
+                <option value="Chat con Apu">Chat con Apu</option>
+                <option value="Decisión del día">Semáforo y decisión del día</option>
+                <option value="Conexión Intervals.icu">Conexión con Intervals.icu</option>
+                <option value="Meta y GPX">Meta, GPX y ritmos</option>
+                <option value="Microciclo">Microciclo semanal</option>
+                <option value="Clima de montaña">Clima de montaña</option>
+                <option value="Diseño">Diseño en móvil, tablet o web</option>
+              </select>
+
+              <div class="row">
+                <div>
+                  <label class="l" for="fb-nombre">Nombre o club</label>
+                  <input type="text" id="fb-nombre" name="nombre" placeholder="Opcional" maxlength="60">
+                </div>
+                <div>
+                  <label class="l" for="fb-email">Correo</label>
+                  <input type="email" id="fb-email" name="email" placeholder="Opcional y privado"
+                    maxlength="120">
+                </div>
+              </div>
+
+              <div class="hp" aria-hidden="true">
+                <label>No llenar<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+              </div>
+
+              <label class="l" for="fb-mensaje">Tu comentario</label>
+              <textarea id="fb-mensaje" name="mensaje" maxlength="600" required
+                placeholder="Qué pasó, qué esperabas o cómo lo mejorarías…"></textarea>
+              <div class="meta"><span>Mínimo 5 caracteres</span><span id="fb-chars">0 / 600</span></div>
+
+              <button type="submit" class="btn primary block">Publicar</button>
+              <div class="form-msg" id="fb-status" role="status" aria-live="polite"></div>
+            </form>
+          </aside>
+
+          <div>
+            <p class="preview-note" id="fb-preview" hidden>Vista previa: el muro aún no está conectado a Google Sheets,
+              así que lo que publiques solo se guarda en este navegador.</p>
+            <div class="filters" role="group" aria-label="Filtrar por tipo">
+              <button type="button" data-filter="Todos" aria-pressed="true">Todos</button>
+              <button type="button" data-filter="Mejora" aria-pressed="false">Mejoras</button>
+              <button type="button" data-filter="Bug" aria-pressed="false">Bugs</button>
+              <button type="button" data-filter="Idea" aria-pressed="false">Ideas</button>
+              <button type="button" data-filter="Felicitación" aria-pressed="false">Experiencias</button>
+            </div>
+            <div class="feed" id="feed-list" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
-</section>
+  </main>
 
-<!-- 11 · Roadmap -->
-<section class="slide" id="s11">
-  <div class="wrap">
-    <p class="eyebrow">Súmate</p>
-    <h2 class="wide">Apu necesita gente que lo pruebe, lo cuestione y lo impulse</h2>
-    <p class="lead">El producto ya funciona; lo que falta es validarlo con atletas reales y encontrar su mercado. Si algo de esto te suena, hablemos.</p>
-    <div class="grid g4">
-      <div class="card"><h3>Atletas y clubes</h3><p>Probarlo con sus propios datos y decirme qué sirve y qué no.</p></div>
-      <div class="card"><h3>Negocio e inversión</h3><p>Validar el mercado, afinar el modelo y abrir puertas a financiamiento.</p></div>
-      <div class="card"><h3>Salud y deporte</h3><p>Entrenadores, fisios y médicos deportivos que revisen las reglas de seguridad.</p></div>
-      <div class="card"><h3>Tecnología y diseño</h3><p>Desarrolladores y diseñadores para el panel de entrenador y nuevas fuentes de datos.</p></div>
+  <footer class="foot">
+    <div class="wrap">
+      <span class="brand sm"><svg class="mark" aria-hidden="true"><use href="#apu-iso"/></svg>Apu Coach</span>
+      <p>Hecho en Quito, Ecuador · <a href="mailto:lpilco7@gmail.com">lpilco7@gmail.com</a></p>
+      <p class="fine">Apu Coach no sustituye a tu médico. Las pantallas muestran a Ana, una atleta de demostración con
+        datos sintéticos.</p>
     </div>
-    <div class="grid g2" style="margin-top:16px">
-      <div class="card"><h3>Lo que sigue</h3><ul class="clean"><li>Pasar la base de datos a producción y abrir un piloto cerrado</li><li>Construir el panel de entrenador</li><li>Probar si la gente pagaría y cuánto</li></ul></div>
-      <div class="card"><h3>Retos que veo</h3><ul class="clean"><li>Depende de Intervals.icu: el alta tiene un paso extra</li><li>Es salud: las reglas de seguridad deben ser impecables</li><li>Hay gigantes (Strava, Garmin): hay que ser muy específicos</li></ul></div>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<!-- 12 · Cierre -->
-<section class="slide" id="s12">
-  <div class="sunrise"></div>
-  <svg class="ridge" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 400V250l140-90 120 70 170-170 150 150 110-80 190 190 120-70 200 130v120z" fill="var(--ridge1)" opacity=".7"/>
-    <path d="M0 400V320l200-100 150 90 200-150 170 130 150-90 330 190v10z" fill="var(--ridge2)"/>
-  </svg>
-  <div class="wrap">
-    <p class="eyebrow">Lo que viene</p>
-    <h2 class="wide">Próximamente: <span class="grad">pruébalo tú mismo</span></h2>
-    <p class="lead" style="margin-top:20px;max-width:58ch">Espera tu invitación en noviembre para experimentar con Apu Kamayuk con tus propios datos. Y si quieres sumarte a buscar inversionistas o un mercado donde hacer nicho, escríbeme.</p>
-    <p class="lead" style="margin-top:26px">Contacto: <b style="color:var(--text)">Luis Alfredo</b> · <a href="mailto:lpilco7@gmail.com" style="color:var(--brand)">lpilco7@gmail.com</a> · <a href="tel:+593979323343" style="color:var(--brand)">0979323343</a></p>
-  </div>
-</section>
-
-<div class="nav" aria-label="Navegación">
-  <button id="prev" aria-label="Lámina anterior">↑</button>
-  <span class="count" id="count">1 / 15</span>
-  <button id="next" aria-label="Lámina siguiente">↓</button>
-  <button id="theme" aria-label="Cambiar tema claro u oscuro">◐</button>
-</div>
-
-<script>
-(function(){
-  var slides=[].slice.call(document.querySelectorAll('.slide'));
-  var cur=0,count=document.getElementById('count'),bar=document.getElementById('progress');
-  var root=document.documentElement;
-  try{var t=localStorage.getItem('apu-deck-theme');if(t)root.setAttribute('data-theme',t);
-    else if(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)root.setAttribute('data-theme','light');}catch(e){}
-  function go(i){i=Math.max(0,Math.min(slides.length-1,i));slides[i].scrollIntoView({behavior:'smooth'});}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(e.isIntersecting){cur=slides.indexOf(e.target);count.textContent=(cur+1)+' / '+slides.length;
-      bar.style.width=((cur+1)/slides.length*100)+'%';}});},{threshold:.55});
-  slides.forEach(function(s){io.observe(s);});
-
-  function fit(){[].forEach.call(document.querySelectorAll('.fit'),function(f){var u=f.firstElementChild;
-    u.style.transform='scale('+(f.clientWidth/parseFloat(u.dataset.w))+')';});}
-  fit();window.addEventListener('resize',fit);
-  var sw=document.getElementById('swap');if(sw)sw.onclick=function(){
-    [].forEach.call(document.querySelectorAll('.ui'),function(u){u.dataset.mode=u.dataset.mode==='dark'?'light':'dark';});};
-  document.getElementById('prev').onclick=function(){go(cur-1)};
-  document.getElementById('next').onclick=function(){go(cur+1)};
-  document.getElementById('theme').onclick=function(){
-    var n=root.getAttribute('data-theme')==='light'?'dark':'light';root.setAttribute('data-theme',n);
-    try{localStorage.setItem('apu-deck-theme',n);}catch(e){}};
-  document.addEventListener('keydown',function(e){
-    if(e.target.closest&&e.target.closest('button[role=tab]'))return;
-    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(cur+1);}
-    else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(cur-1);}
-    else if(e.key==='Home'){go(0);}else if(e.key==='End'){go(slides.length-1);}});
-  [].forEach.call(document.querySelectorAll('.tabs button'),function(b){b.onclick=function(){
-    [].forEach.call(document.querySelectorAll('.tabs button'),function(x){x.setAttribute('aria-selected',x===b)});
-    [].forEach.call(document.querySelectorAll('.panel'),function(p){p.classList.toggle('on',p.id===b.dataset.p)});};});
-})();
-</script>
+  <script src="app.js"></script>
 </body>
+
 </html>
