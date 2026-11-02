@@ -50,8 +50,8 @@
       $$('.view').forEach(function (v) { v.classList.toggle('on', v.id === 'v-' + id); });
       $$('[data-tab]').forEach(function (a) { a.setAttribute('aria-selected', a.dataset.tab === id ? 'true' : 'false'); });
       document.title = {
-        apu: 'Apu Coach · Tu coach de montaña con IA',
-        conectar: 'Conectar tu reloj · Apu Coach',
+        apu: 'Apu Coach · Inteligencia fisiológica de montaña',
+        conectar: 'Vincular tu reloj · Apu Coach',
         proyecto: 'El proyecto · Apu Coach',
         comunidad: 'Comunidad · Apu Coach'
       }[id];
