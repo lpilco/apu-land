@@ -472,7 +472,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 .post header { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; font-size: .78rem; }
 .post .badge .ic { width: 14px; height: 14px; margin-right: 4px; }
 .post .badge { display: inline-flex; align-items: center; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
-.post.t-bug .badge { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
+.post.t-bug .badge, .post.t-error .badge { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
 .post.t-idea .badge, .post.t-fel .badge { background: color-mix(in srgb, var(--warn) 14%, transparent); color: var(--warn); }
 .post .area { color: var(--muted); }
 .post .st { margin-left: auto; color: var(--safe); font-weight: 600; }

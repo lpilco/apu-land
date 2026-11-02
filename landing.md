@@ -222,7 +222,7 @@ Tras contrastar [`frontend/index.html`](file:///Users/luisalfredopilco/Documents
 | **Nombres de Presets de Módulos** | `Campamento base`, `Ruta clásica`, `Cumbre` (Pestaña El Coach) | En algunos selectores internos figuran nombres genéricos (`compact`, `focus`). | **Mejora:** Estandarizar la tríada andina `Campamento base`, `Ruta clásica` y `Cumbre` en el modal de personalización de módulos. |
 | **Meta vs Objetivo** | Se usa `Meta` en títulos y pasos | En algunos modelos de backend persiste `target_goal` u «objetivo». | **Mejora:** Confirmar que en la interfaz visual hacia el atleta el término visible sea siempre `Tu meta`. |
 | **Tutorial de Conexión Intervals.icu** | 4 Pasos detallados con capturas reales y advertencia clara sobre Strava | El login de la app solo tiene dos inputs y un link externo genérico a Intervals.icu. | **Mejora:** Añadir en el login de la app un enlace contextual visible: `¿Cómo conectar tu reloj en 4 pasos? Ver tutorial`. |
-| **Muro de Aportes / Feedback** | En landing existe el muro interactivo con categorías: *Mejora*, *Bug*, *Idea*, *Experiencia*. | En la app el feedback se limita a un formulario modal de reporte. | **Mejora:** Compartir los mismos 4 tipos de aportes en el diálogo de feedback del cockpit. |
+| **Muro de Aportes / Feedback** | En landing existe el muro interactivo con categorías: *Mejora*, *Error*, *Idea*, *Experiencia*. | En la app el feedback se limita a un formulario modal de reporte. | **Mejora:** Compartir los mismos 4 tipos de aportes en el diálogo de feedback del cockpit. |
 
 ---
 

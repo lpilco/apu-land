@@ -20,7 +20,7 @@
 
 const SHEET_NAME = 'Feedback';
 const HEADERS = ['Fecha', 'ID', 'Nombre', 'Email', 'Tipo', 'Área', 'Mensaje', 'Estado', 'Visible'];
-const TYPES = ['Bug', 'Mejora', 'Idea', 'Felicitación'];
+const TYPES = ['Error', 'Bug', 'Mejora', 'Idea', 'Felicitación'];
 const MAX_ITEMS = 200;
 
 function getSheet_() {

@@ -414,12 +414,13 @@
     }
 
     function typeClass(t) {
-      return { Bug: 't-bug', Mejora: 't-mejora', 'Felicitación': 't-fel' }[t] || 't-idea';
+      return { Bug: 't-bug', Error: 't-bug', Mejora: 't-mejora', 'Felicitación': 't-fel' }[t] || 't-idea';
     }
     function icon(id) { return '<svg class="ic" aria-hidden="true"><use href="#' + id + '"/></svg>'; }
     function typeLabel(t) {
       return {
-        Bug: icon('i-bug') + 'Bug',
+        Bug: icon('i-alert') + 'Error',
+        Error: icon('i-alert') + 'Error',
         Mejora: icon('i-bolt') + 'Mejora',
         'Felicitación': icon('i-heart') + 'Experiencia'
       }[t] || icon('i-bulb') + 'Idea';
@@ -439,14 +440,18 @@
       var n = function (f) { return allPosts.filter(f).length; };
       $('#cnt-total').textContent = allPosts.length;
       $('#cnt-mejora').textContent = n(function (x) { return x.tipo === 'Mejora'; });
-      $('#cnt-bug').textContent = n(function (x) { return x.tipo === 'Bug'; });
+      $('#cnt-bug').textContent = n(function (x) { return x.tipo === 'Error' || x.tipo === 'Bug'; });
       $('#cnt-idea').textContent = n(function (x) { return x.tipo === 'Idea' || x.tipo === 'Felicitación'; });
     }
 
     function renderFeed() {
       var feed = $('#feed-list');
       updateCounters();
-      var list = allPosts.filter(function (p) { return activeFilter === 'Todos' || p.tipo === activeFilter; });
+      var list = allPosts.filter(function (p) {
+        if (activeFilter === 'Todos') return true;
+        if (activeFilter === 'Error' || activeFilter === 'Bug') return p.tipo === 'Error' || p.tipo === 'Bug';
+        return p.tipo === activeFilter;
+      });
       if (!list.length) {
         feed.innerHTML = '<div class="empty"><svg class="mark" aria-hidden="true"><use href="#apu-iso"/></svg>' +
           '<h3>' + (allPosts.length ? 'Nada en esta categoría todavía' : 'Sé la primera persona en comentar') + '</h3>' +
@@ -547,11 +552,12 @@
       }
 
       // text/plain evita el preflight CORS que Apps Script no responde
+      var apiTipo = post.tipo === 'Error' ? 'Bug' : post.tipo;
       fetch(FEEDBACK_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ nombre: post.nombre, email: email, tipo: post.tipo, area: post.area, mensaje: post.mensaje })
+        body: JSON.stringify({ nombre: post.nombre, email: email, tipo: apiTipo, area: post.area, mensaje: post.mensaje })
       }).then(function () {
         saveLocalPost(post);
         mergePosts([]);
