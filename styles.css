@@ -522,3 +522,17 @@ select {
   padding-right: 42px; cursor: pointer; line-height: 1.4;
 }
 select::-ms-expand { display: none; }
+
+/* ---------- Reglas defensivas: ocultar badges/widgets inyectados por Netlify ---------- */
+a[href*="netlify.com"],
+iframe[src*="netlify"],
+div[id*="netlify"],
+div[class*="netlify"],
+[id*="netlify"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
