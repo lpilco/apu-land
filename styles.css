@@ -524,6 +524,11 @@ select {
 select::-ms-expand { display: none; }
 
 /* ---------- Reglas defensivas: ocultar badges/widgets inyectados por Netlify ---------- */
+#nl-badge-frame,
+#nl-hud-frame,
+iframe[id^="nl-"],
+iframe[title*="Netlify"],
+iframe[data-nl-ready],
 a[href*="netlify.com"],
 iframe[src*="netlify"],
 div[id*="netlify"],
@@ -535,4 +540,5 @@ div[class*="netlify"],
   pointer-events: none !important;
   width: 0 !important;
   height: 0 !important;
+  clip-path: inset(100%) !important;
 }
