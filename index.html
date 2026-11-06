@@ -18,7 +18,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script>
     // Aplica el tema guardado antes de pintar para evitar parpadeo
     try { var t = localStorage.getItem('apu-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
@@ -802,6 +802,8 @@
     </div>
   </footer>
 
+  <template id="nl-badge-frame" hidden></template>
+  <template id="nl-hud-frame" hidden></template>
   <script src="app.js"></script>
 </body>
 
